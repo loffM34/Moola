@@ -11,4 +11,4 @@ function Bots({ botName, stockSymbol }) {
 
 export default Bots;
 
-// class name = bots
+// class name = bots j
