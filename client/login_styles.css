@@ -1,0 +1,165 @@
+*{
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+    margin:0;
+    padding:0;
+}
+
+a{
+    text-decoration: none;
+}
+
+/* body and html styles */
+html, body{
+    height: 100%;
+    display:flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+}
+
+
+/* header styles */
+header{
+    display:flex;
+    flex-wrap: nowrap;
+    height:50px;
+}
+
+/* company name & logo styles */
+#company-name{
+    background-color: #333;
+    color: white;
+    height:100%;
+    padding:10px;
+}
+
+
+/* style top nav bar*/
+#navBar{
+    overflow: hidden;
+    background-color: #333;
+    width: 100%;
+}
+
+
+/* style nav links */
+#navBar li {
+    float:right;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+}
+
+
+#navBar a:visited{
+    color: white;
+}
+
+/* navbar hover effects */
+#navBar a:hover{
+    background-color: #ddd;
+    color:black;
+}
+
+/* log In section styles */
+#login-box{
+    border: 1px solid #c8d1e0;
+    display:flex;
+    flex-wrap:wrap;
+    flex-direction: column;
+    align-items: center;
+    align-self: center;
+    margin-top:100px;
+    padding:25px;
+}
+
+/* login header styles */
+#login-header h1,h3{
+    text-align: center;
+    margin: 10px;
+}
+
+/* sign up link */
+#login-header a{
+    color:blue;
+}
+
+/* input boxes styles */
+#inputBox input{
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    margin: 8px 0px;
+    padding:12px 20px;
+    width:100%;
+    background-color: #d1d1d1;
+    
+}
+
+::placeholder{
+    color:black
+}
+
+/* forgot password stlyes */
+#forgot-password{
+    padding-right: 270px;    
+}
+
+
+/* submit button styles */
+#submit-button input{
+    width: 50%;
+    background-color: #5271FF;
+    color:white;
+    padding: 14px 20px;
+    margin: 8px 100px;
+    border:none;
+    border-radius: 4px;
+    cursor:pointer;
+
+}
+
+/* login types styles */
+#login-types ul{
+    display:flex;
+    margin-top: 20px;
+}
+
+#login-types ul li{
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    padding-bottom: 10px;
+    width:125px;
+    margin: 5px;
+}
+
+#apple{
+    background: black;
+    border-radius: 30px;
+}
+
+#google{
+    background-color: #f3f3f3;
+    border-radius: 30px;
+}
+
+#facebook{
+    background-color: #012f6a;
+    border-radius: 30px;
+}
+
+
+#login-types img{
+    width:30px;
+    height: 40px;
+    padding-bottom: px;
+}
+
+/* footer stlyes */
+footer{
+    height:50px;
+    
+}
+
