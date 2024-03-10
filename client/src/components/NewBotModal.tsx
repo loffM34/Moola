@@ -4,6 +4,7 @@ import { useState } from "react";
 import { createNewBot } from "../scripts/createBot";
 import { useLocation } from "react-router-dom";
 import { getAuthContext } from "../scripts/authContext";
+import StockSearchForm from "./stockSearchForm";
 
 function NewBotModal({ closeModal }) {
   const userEmail = getAuthContext().email;
@@ -72,6 +73,7 @@ function NewBotModal({ closeModal }) {
                   <option value="TSLA">TSLA</option>
                 </select>
               </div>
+              <StockSearchForm />
               <div className="trading-strategy-input">
                 <label>Strategy:</label>
                 <select

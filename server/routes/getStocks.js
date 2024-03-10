@@ -1,26 +1,31 @@
 const express = require("express");
 const router = express.Router();
 
-'use strict';
-var request = require('request');
+("use strict");
 
-// replace the "demo" apikey below with your own key from https://www.alphavantage.co/support/#api-key
-var url = 'https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=tesco&apikey=W1STZFWA9QLSP4PH';
+router.get("/", async (req, res) => {
+  console.log("YO")
 
-router.get({
-    url: url,
-    json: true,
-    headers: {'User-Agent': 'request'}
-  }, (err, res, data) => {
-    if (err) {
-      console.log('Error:', err);
-    } else if (res.statusCode !== 200) {
-      console.log('Status:', res.statusCode);
-    } else {
-      // data is successfully parsed as a JSON object:
-      console.log(data);
+  try {
+    const url =
+      "https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=tesco&apikey=W1STZFWA9QLSP4PH";
+
+    const response = await fetch(url);
+
+    console.log("Response", response);
+
+    if (!response.ok) {
+      console.log("HTTP Error! status:", response.status);
     }
+
+    const data = await response.json();
+
+    console.log("data", data);
+
+    res.json(data);
+  } catch (error) {
+    console.error("Error: ", error);
+  }
 });
 
 module.exports = router;
-

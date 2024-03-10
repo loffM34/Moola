@@ -27,7 +27,7 @@ app.use("/UserCheckApi", userAuth);
 
 app.use("/GetUserBots", getBotArray);
 
-app.use("/getStocks", getStocks);
+app.use("/GetStocks", getStocks);
 
 app.listen(PORT, () => {
   console.log("server is running on port", PORT);
