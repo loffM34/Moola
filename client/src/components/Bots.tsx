@@ -1,7 +1,7 @@
-function Bots({botName, stockSymbol}) {
+function Bots({ botName, stockSymbol }) {
   return (
     <>
-      <div className = "bots">
+      <div className="bots">
         <p>Bot Name: {botName}</p>
         <p>Stock: {stockSymbol}</p>
       </div>
