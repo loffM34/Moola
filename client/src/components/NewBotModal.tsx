@@ -60,18 +60,6 @@ function NewBotModal({ closeModal }) {
               <h3>Trading Info</h3>
               <div className="stock-input">
                 <label>Stock:</label>
-                <select
-                  className="form-control"
-                  value={stockSymbol}
-                  onChange={(e) => setStockSymbol(e.target.value)}
-                >
-                  <option hidden>
-                    Choose A Stock <i className="bi bi-list"></i>
-                  </option>
-                  <option value="SPY">SPY</option>
-                  <option value="APPL">APPL</option>
-                  <option value="TSLA">TSLA</option>
-                </select>
               </div>
               <StockSearchForm />
               <div className="trading-strategy-input">

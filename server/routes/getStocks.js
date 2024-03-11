@@ -4,15 +4,18 @@ const router = express.Router();
 ("use strict");
 
 router.get("/", async (req, res) => {
-  console.log("YO")
-
   try {
+    const query = req.query.query;
+
     const url =
-      "https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=tesco&apikey=W1STZFWA9QLSP4PH";
+      "https://api.polygon.io/v3/reference/tickers?market=stocks&search=" +
+      query +
+      "&active=true&limit=10&apiKey=HkekUkMdHzgwQuFFuagHBnp9OIKiWRux";
+    // "https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=" +
+    // query +
+    // "&apikey=W1STZFWA9QLSP4PH";
 
     const response = await fetch(url);
-
-    console.log("Response", response);
 
     if (!response.ok) {
       console.log("HTTP Error! status:", response.status);
