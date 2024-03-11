@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 function StockSearchForm() {
   const [searchResults, setSearchResults] = useState([]);
+  const [selectedStock, setSelectedStock] = useState("");
 
   async function handleStockSearch(query) {
     try {
@@ -41,16 +42,27 @@ function StockSearchForm() {
           name="searchQuery"
           placeholder="Enter stock symbol"
         />
-        <button className="btn btn-outline-success" id="searchButton" type="submit">
+        <button
+          className="btn btn-outline-success"
+          id="searchButton"
+          type="submit"
+        >
           Search
         </button>
       </form>
 
-      <ul className="searchResults">
+      <select
+        className="form-select"
+        value={selectedStock}
+        onChange={(e) => setSelectedStock(e.target.value)}
+      >
+        <option hidden>Select a stock</option>
         {searchResults.map((result, index) => (
-          <li key={index}>{result.ticker}</li>
+          <option className="drop-item" key={index} value={result.ticker}>
+            {result.ticker}
+          </option>
         ))}
-      </ul>
+      </select>
     </>
   );
 }
