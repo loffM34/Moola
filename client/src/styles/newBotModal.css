@@ -1,14 +1,13 @@
 .modalBackground {
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0,0,0,0.4);
+  background-color: rgba(0, 0, 0, 0.4);
   position: fixed;
   display: flex;
   justify-content: center;
   align-items: center;
-  top:0px;
-
-
+  top: 0px;
+  z-index: 1;
 }
 
 .modalContainer {
@@ -31,9 +30,7 @@
 .titleCloseBtn {
   display: flex;
   justify-content: flex-end;
-  position:absolute
-  
-
+  position: absolute;
 }
 
 .titleCloseBtn button {
@@ -52,7 +49,6 @@
   align-items: center;
   font-size: 1.7rem;
   text-align: center;
-  
 }
 
 .modalContainer .footer {
@@ -82,14 +78,13 @@
   background-color: crimson;
 }
 
-
 /* input,select{
   min-width: 250px;
 } */
 
-label{
+label {
   font-size: medium;
   margin: 0;
-  padding:0;
+  padding: 0;
   float: left;
 }

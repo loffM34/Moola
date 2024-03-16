@@ -20,28 +20,17 @@
   padding: 10px;
 }
 
-.dashHeader {
-}
-
 .body {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
 }
 
-.bots {
-  background-color: grey;
-  border-radius: 25px;
-  min-height: 200px;
-  min-width: 200px;
-  margin: 10px;
-}
-
 .searchResults {
   list-style-type: none;
 }
 
-#searchButton{
-  height:40px;
+#searchButton {
+  height: 40px;
   margin-top: 10px;
 }

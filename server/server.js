@@ -7,6 +7,7 @@ dotenv.config();
 const cors = require("cors");
 const app = express();
 const newBot = require("./routes/newBot");
+const deleteBot = require(".//routes/deleteBot");
 const userAuth = require("./routes/userAuth");
 const newUser = require("./routes/newUser");
 const getBotArray = require("./routes/getBotArray");
@@ -28,6 +29,8 @@ app.use("/UserCheckApi", userAuth);
 app.use("/GetUserBots", getBotArray);
 
 app.use("/GetStocks", getStocks);
+
+app.use("/DeleteBotApi", deleteBot);
 
 app.listen(PORT, () => {
   console.log("server is running on port", PORT);

@@ -1,0 +1,32 @@
+.bots {
+  background-color: grey;
+  border-radius: 25px;
+  min-height: 200px;
+  min-width: 200px;
+  margin: 10px;
+  text-align: center;
+  position: relative;
+  border: 2px solid black;
+}
+
+.stockSymbol {
+  font-size: 50px;
+  /* background: white; */
+}
+
+.botButtons {
+  position: absolute;
+  margin: 35px 0px 0px 10px;
+  background-color: transparent;
+}
+
+.deleteBotBtn {
+  background-color: transparent;
+  border: none;
+}
+
+.deleteBotBtn :hover {
+  background-color: white;
+  border-radius: 5px;
+  transition-duration: 0.5s;
+}

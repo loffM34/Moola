@@ -16,6 +16,30 @@ router.post("/", async (req, res) => {
 
   try {
     const user = await UserData.findOne({ email: user_email });
+    var botNameTaken = false;
+    console.log("Lenght", user.userBots.length);
+    for (let i = 0; i < user.userBots.length; i++) {
+      console.log(
+        "bot_name ",
+        bot_name,
+        " userArray ",
+        user.userBots[i].botName
+      );
+
+      if (user.userBots[i].botName == bot_name) {
+        botNameTaken = true;
+        break;
+      }
+    }
+
+    console.log("BOTNAMETAKEN ", botNameTaken);
+    if (botNameTaken) {
+      res.json({ status: "name taken" });
+      return;
+    } else {
+      res.json({ status: "name avaiable" });
+    }
+
     await user.updateOne({
       $push: {
         userBots: {
@@ -30,7 +54,7 @@ router.post("/", async (req, res) => {
         },
       },
     });
-    console.log("successfully added")
+    console.log("successfully added");
   } catch (error) {
     console.error(error);
   }

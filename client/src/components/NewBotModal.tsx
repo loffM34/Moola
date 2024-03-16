@@ -1,7 +1,7 @@
 import "../styles/newBotModal.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import { useState } from "react";
-import { createNewBot } from "../scripts/createBot";
+import { createNewBot } from "../scripts/botScripts";
 import { useLocation } from "react-router-dom";
 import { getAuthContext } from "../scripts/authContext";
 import StockSearchForm from "./stockSearchForm";
@@ -11,11 +11,38 @@ function NewBotModal({ closeModal }) {
   const [botName, setBotName] = useState("");
   const [alpacaKey, setAlpacaKey] = useState("");
   const [alpacaSecret, setAlpacaSecret] = useState("");
-  const [stockSymbol, setStockSymbol] = useState("");
   const [tradingStrategy, setTradingStrategy] = useState("");
   const [startingAmount, setStartingAmount] = useState("");
   const [cashRiskPercentage, setCashRiskPercentage] = useState("");
   const [tradeProfitOrder, setTradeProfitOrder] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
+  const [stockSymbol, setStockSymbol] = useState("");
+
+  async function handleStockSearch(query) {
+    try {
+      const response = await fetch(
+        "http://localhost:9000/GetStocks?query=" + query
+      );
+      if (!response.ok) {
+        console.error("Failed to search Stocks");
+        setSearchResults([]);
+        return;
+      }
+      const data = await response.json();
+      setSearchResults(data.results);
+    } catch (error) {
+      console.error("error searching stocks: ", error);
+    }
+  }
+
+  function handleSearch(e) {
+    e.preventDefault();
+    const query = e.target.elements.searchQuery.value;
+    if (query) {
+      handleStockSearch(query);
+    }
+  }
+
   return (
     <>
       <div className="modalBackground">
@@ -61,7 +88,39 @@ function NewBotModal({ closeModal }) {
               <div className="stock-input">
                 <label>Stock:</label>
               </div>
-              <StockSearchForm />
+              {/* <StockSearchForm /> */}
+              <form className="d-flex" onSubmit={handleSearch}>
+                <input
+                  type="text"
+                  className="form-control me-2"
+                  name="searchQuery"
+                  placeholder="Enter stock symbol"
+                />
+                <button
+                  className="btn btn-outline-success"
+                  id="searchButton"
+                  type="submit"
+                >
+                  Search
+                </button>
+              </form>
+
+              <select
+                className="form-select"
+                value={stockSymbol}
+                onChange={(e) => setStockSymbol(e.target.value)}
+              >
+                <option hidden>Select a stock</option>
+                {searchResults.map((result, index) => (
+                  <option
+                    className="drop-item"
+                    key={index}
+                    value={result.ticker}
+                  >
+                    {result.ticker}
+                  </option>
+                ))}
+              </select>
               <div className="trading-strategy-input">
                 <label>Strategy:</label>
                 <select
@@ -119,7 +178,7 @@ function NewBotModal({ closeModal }) {
             </div>
             <div className="footer">
               <button
-                onClick={() => {
+                onClick={async () => {
                   if (
                     !botName ||
                     !alpacaKey ||
@@ -132,7 +191,7 @@ function NewBotModal({ closeModal }) {
                   ) {
                     alert("Please fill in all the fields");
                   } else {
-                    createNewBot(
+                    const response = await createNewBot(
                       userEmail,
                       botName,
                       alpacaKey,
@@ -143,8 +202,16 @@ function NewBotModal({ closeModal }) {
                       cashRiskPercentage,
                       tradeProfitOrder
                     );
-                    closeModal(false);
-                    window.location.reload();
+
+                    console.log("response", response.status);
+                    if (response.status === "name taken") {
+                      alert("Bot name already taken for this user");
+                      return;
+                    } else {
+                      console.log("made  it here");
+                      closeModal(false);
+                      window.location.reload();
+                    }
                   }
                 }}
               >

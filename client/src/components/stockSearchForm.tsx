@@ -9,8 +9,6 @@ function StockSearchForm() {
       const response = await fetch(
         "http://localhost:9000/GetStocks?query=" + query
       );
-      console.log("query ", query);
-      console.log("response", response);
       if (!response.ok) {
         console.error("Failed to search Stocks");
         setSearchResults([]);
@@ -18,14 +16,12 @@ function StockSearchForm() {
       }
       const data = await response.json();
       setSearchResults(data.results);
-      console.log("data: ", data);
-      console.log("search Results ", data);
     } catch (error) {
       console.error("error searching stocks: ", error);
     }
   }
 
-  function handleSubmit(e) {
+  function handleSearch(e) {
     e.preventDefault();
     const query = e.target.elements.searchQuery.value;
     if (query) {
@@ -35,7 +31,7 @@ function StockSearchForm() {
 
   return (
     <>
-      <form className="d-flex" onSubmit={handleSubmit}>
+      <form className="d-flex" onSubmit={handleSearch}>
         <input
           type="text"
           className="form-control me-2"

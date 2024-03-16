@@ -23,8 +23,6 @@ router.get("/", async (req, res) => {
 
     const data = await response.json();
 
-    console.log("data", data);
-
     res.json(data);
   } catch (error) {
     console.error("Error: ", error);
