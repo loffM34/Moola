@@ -51,7 +51,7 @@ const server = app.listen(PORT, () => {
 let cronJobRef = null;
 let cronJobPID = null;
 
-//Cron job handling
+//Cron job handling (use bash 'curl http://localhost:9000/stop-cron' to start cronJob)
 app.get("/start-cron", (req, res) => {
   console.log("Received request to start cron job");
   console.log("cron job reference: ", cronJobRef);

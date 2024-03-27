@@ -1,4 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useEffect } from "react";
+import { clearAuthContext } from "./scripts/authContext";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
@@ -6,6 +8,17 @@ import NoPage from "./pages/NoPage";
 import UserDash from "./pages/UserDash";
 
 function App() {
+  useEffect(() => {
+    const handleBeforeUnload = (event) => {
+      clearAuthContext();
+      localStorage.removeItem("token");
+    };
+    window.addEventListener("beforeunload", handleBeforeUnload);
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
+  }, []);
+
   return (
     <div>
       <BrowserRouter>
