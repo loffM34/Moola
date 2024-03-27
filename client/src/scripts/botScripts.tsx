@@ -30,7 +30,7 @@ export const createNewBot = async (
       },
     });
 
-   return response.json()
+    return response.json();
   } catch (error) {
     console.log("ERROR creating new bot: ", error);
   }

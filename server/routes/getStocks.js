@@ -11,9 +11,6 @@ router.get("/", async (req, res) => {
       "https://api.polygon.io/v3/reference/tickers?market=stocks&search=" +
       query +
       "&active=true&limit=10&apiKey=HkekUkMdHzgwQuFFuagHBnp9OIKiWRux";
-    // "https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=" +
-    // query +
-    // "&apikey=W1STZFWA9QLSP4PH";
 
     const response = await fetch(url);
 

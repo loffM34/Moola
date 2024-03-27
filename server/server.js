@@ -1,3 +1,5 @@
+const readline = require("readline");
+
 const express = require("express");
 const dotenv = require("dotenv");
 
@@ -6,6 +8,16 @@ dotenv.config();
 
 const cors = require("cors");
 const app = express();
+
+//server port
+const PORT = 9000;
+
+//cron job
+const cron = require("node-cron");
+const logger = console;
+const runSheduledTask = require(".//cronJob/scheduledTask");
+
+//server listeners
 const newBot = require("./routes/newBot");
 const deleteBot = require(".//routes/deleteBot");
 const userAuth = require("./routes/userAuth");
@@ -13,7 +25,7 @@ const newUser = require("./routes/newUser");
 const getBotArray = require("./routes/getBotArray");
 const runTradeBot = require("./routes/runTradeBot");
 const getStocks = require("./routes/getStocks");
-const PORT = 9000;
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
@@ -32,39 +44,49 @@ app.use("/GetStocks", getStocks);
 
 app.use("/DeleteBotApi", deleteBot);
 
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
   console.log("server is running on port", PORT);
 });
 
-// const { MongoClient, ServerApiVersion } = require("mongodb");
-// const uri =
-//   "mongodb+srv://loffm34:bD2MIR6Aq0Yq3Pho@capstonedb.vfyxald.mongodb.net/?retryWrites=true&w=majority";
+let cronJobRef = null;
+let cronJobPID = null;
 
-// // Create a MongoClient with a MongoClientOptions object to set the Stable API version
-// const client = new MongoClient(uri, {
-//   serverApi: {
-//     version: ServerApiVersion.v1,
-//     strict: true,
-//     deprecationErrors: true,
-//   },
-// });
+//Cron job handling
+app.get("/start-cron", (req, res) => {
+  console.log("Received request to start cron job");
+  console.log("cron job reference: ", cronJobRef);
+  if (!cronJobRef) {
+    cronJobRef = cron.schedule("* * * * *", () => {
+      cronJobPID = runSheduledTask(logger);
+    });
+    console.log("cron job started");
+    console.log("cron job reference: ", cronJobRef);
+  } else {
+    console.log("Cron job already running!");
+  }
+});
 
-// async function run() {
-//   try {
-//     // Connect the client to the server	(optional starting in v4.7)
-//     await client.connect();
-//     // Send a ping to confirm a successful connection
-//     await client.db("admin").command({ ping: 1 });
-//     console.log(
-//       "Pinged your deployment. You successfully connected to MongoDB!"
-//     );
-//   } finally {
-//     // Ensures that the client will close when you finish/error
-//     await client.close();
+const handleShutdown = () => {
+  //close server
+  server.close(() => {
+    console.log("server closed");
+    process.exit(0);
+  });
+};
+
+//listen for termination signals
+process.on("SIGINT", handleShutdown);
+
+// app.get("/stop-cron", (req, res) => {
+//   console.log("Received request to stop cron job");
+
+//   console.log("cron job ref before stopping: ", cronJobRef);
+//   if (cronJobRef) {
+//     console.log("cron PID", cronJobPID);
+//     process.kill(cronJobPID);
+//     cronJobRef = null;
+//     console.log("Cron job stopped");
+//   } else {
+//     console.log("There is no cron job running");
 //   }
-// }
-// run().catch(console.dir);
-
-// app.use("/LoginApi", userAuth);
-
-// app.use("/SignUpApi", userAuth);
+// });
