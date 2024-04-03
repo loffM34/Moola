@@ -16,6 +16,8 @@ const PORT = 9000;
 const cron = require("node-cron");
 const logger = console;
 const runSheduledTask = require(".//cronJob/scheduledTask");
+//new Cron Job
+const runUserBots = require("./cronJob/userBotsCron");
 
 //server listeners
 const newBot = require("./routes/newBot");
@@ -57,10 +59,10 @@ app.get("/start-cron", (req, res) => {
   console.log("cron job reference: ", cronJobRef);
   if (!cronJobRef) {
     cronJobRef = cron.schedule("* * * * *", () => {
-      cronJobPID = runSheduledTask(logger);
+      // cronJobPID = runSheduledTask(logger);
+      cronJobPID = runUserBots(logger);
     });
     console.log("cron job started");
-    console.log("cron job reference: ", cronJobRef);
   } else {
     console.log("Cron job already running!");
   }

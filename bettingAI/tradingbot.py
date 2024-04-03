@@ -10,9 +10,9 @@ from finbert_utils import estimate_sentiment
 
 
 ## Alpaca API INFO
-API_KEY = "PKDGY2P4PWQ4Z5SE1QMI"
-API_SECRET = "zc1yxtLN4xmhs4ZFkcgKwdlxJvje2bde68MOBecy"
-BASE_URL = "https://paper-api.alpaca.markets"
+API_KEY = "PKGI10CQJC6VQQHHV52D"
+API_SECRET = "M4JXRPoamCkc8fo5HLfvNqBocAcj5zrbKbIauCwS"
+BASE_URL = "https://paper-api.alpaca.markets/v2"
 
 ALPACA_CREDS = {
     "API_KEY": API_KEY,
@@ -25,6 +25,7 @@ class MLTrader(Strategy):
 
     #Initialize method runs once
     def initialize(self, symbol: str="SPY", cash_at_risk:float=0.5):
+        print("LOGGING THE INITIALIZATION STATE")
         #symbol of stock choosen
         self.symbol = symbol
         #How often bot makes a trade
@@ -84,6 +85,7 @@ class MLTrader(Strategy):
                             stop_loss_price = last_price*0.95
                     )
                     #submits order through alpaca
+                    print("Decision: BUY")
                     self.submit_order(order)
                     self.last_trade = "buy"  
 
@@ -102,6 +104,7 @@ class MLTrader(Strategy):
                         stop_loss_price = last_price*1.05
                     )
                     #submits order through alpaca
+                    print("DECISION: SELL")
                     self.submit_order(order)
                     self.last_trade = "sell"  
 
@@ -121,9 +124,16 @@ strategy = MLTrader(name='mlstrat', broker = broker,
                     parameters={"symbol":"SPY", 
                                 "cash_at_risk":0.5})
 
-strategy.backtest(
-    YahooDataBacktesting,
-    start_date,
-    end_date,
-    parameters={"symbol":"SPY", "cash_at_risk":0.5}
-)
+#BACKTESTING 
+# strategy.backtest(
+#     YahooDataBacktesting,
+#     start_date,
+#     end_date,
+#     parameters={"symbol":"SPY", "cash_at_risk":0.5}
+# )
+
+
+#Run bot Live
+trader = Trader()
+trader.add_strategy(strategy)
+trader.run_all()

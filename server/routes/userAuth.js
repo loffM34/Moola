@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 const UserData = require("../mongo");
 const jwt = require("jsonwebtoken");
-const bcrypt = require("bcryptjs");
 
 router.get("/", (req, res) => {
   console.log("fired");
@@ -26,33 +25,5 @@ router.post("/", async (req, res) => {
     console.error("server fail: ", e);
   }
 });
-
-// router.post("/signup", async (req, res) => {
-
-//     const email = req.body.email;
-//     const password = req.body.password;
-//     const firstName = req.body.firstName
-//     const lastName = req.body.lastName
-
-//     try {
-//       const user = await UserData.findOne({ email: email });
-
-//     //   dont create new user if user exists
-//       if (user != null) {
-//         res.json({ status: "exist"});
-//       } else {
-//         const newUser = new User({
-//             firstName: firstName,
-//             lastName: lastName,
-//             email: email,
-//             password: password,
-//         })
-//         return newUser.save();
-//       }
-//     } catch (e) {
-//       res.json("server fail");
-//     }
-
-// });
 
 module.exports = router;
