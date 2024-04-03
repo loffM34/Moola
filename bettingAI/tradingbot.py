@@ -107,6 +107,8 @@ class MLTrader(Strategy):
                     print("DECISION: SELL")
                     self.submit_order(order)
                     self.last_trade = "sell"  
+                else:
+                    print("HELD")
 
 # Get current date
 current_date = datetime.today()

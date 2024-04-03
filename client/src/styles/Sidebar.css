@@ -218,14 +218,6 @@ body {
   flex-wrap: nowrap;
 }
 
-.sidebar li img {
-  height: 45px;
-  width: 45px;
-  object-fit: cover;
-  border-radius: 50%;
-  margin-right: 10px;
-}
-
 .sidebar li.profile .name,
 .sidebar li.profile .designation {
   font-size: 15px;
@@ -240,7 +232,6 @@ body {
 
 .sidebar .profile #log_out {
   position: absolute;
-  top: 50%;
   right: 0;
   transform: translateY(-50%);
   background-color: black;
@@ -250,6 +241,23 @@ body {
   border-radius: 5px;
   cursor: pointer;
   transition: all 0.5s ease;
+  top:60%;
+}
+
+.profilePicture {
+  width: 30px;
+  height: 30px;
+  font-size: 100px;
+  background-color: white;
+  border-radius: 200px;
+  align-items: center;
+  border: none;
+  background-image: url("./images/profileImage.jpg");
+  background-size: cover;
+  padding: 10px;
+  margin:10px;
+  margin-left: 50px;
+  margin-top: 10px;
 }
 
 .sidebar.open .profile #log_out {

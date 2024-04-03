@@ -1,48 +1,25 @@
-import "../styles/newBotModal.css";
+import "../styles/editBotModal.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import { useState } from "react";
-import { createNewBot } from "../scripts/botScripts";
+import { updateBot, findBot } from "../scripts/botScripts";
 import { useLocation } from "react-router-dom";
 import { getAuthContext } from "../scripts/authContext";
-import StockSearchForm from "./stockSearchForm";
 
-function NewBotModal({ closeModal }) {
+function EditBotModal({ closeModal, botData }) {
   const userEmail = getAuthContext().email;
-  const [botName, setBotName] = useState("");
-  const [alpacaEndpoint, setAlpacaEndpoint] = useState("");
-  const [alpacaKey, setAlpacaKey] = useState("");
-  const [alpacaSecret, setAlpacaSecret] = useState("");
-  const [tradingStrategy, setTradingStrategy] = useState("");
-  const [startingAmount, setStartingAmount] = useState("");
-  const [cashRiskPercentage, setCashRiskPercentage] = useState("");
-  const [tradeProfitOrder, setTradeProfitOrder] = useState("");
-  const [searchResults, setSearchResults] = useState([]);
-  const [stockSymbol, setStockSymbol] = useState("");
-
-  async function handleStockSearch(query) {
-    try {
-      const response = await fetch(
-        "http://localhost:9000/GetStocks?query=" + query
-      );
-      if (!response.ok) {
-        console.error("Failed to search Stocks");
-        setSearchResults([]);
-        return;
-      }
-      const data = await response.json();
-      setSearchResults(data.results);
-    } catch (error) {
-      console.error("error searching stocks: ", error);
-    }
-  }
-
-  function handleSearch(e) {
-    e.preventDefault();
-    const query = e.target.elements.searchQuery.value;
-    if (query) {
-      handleStockSearch(query);
-    }
-  }
+  const currentBotInfo = botData;
+  const [botName, setBotName] = useState(botData.botName);
+  const [alpacaEndpoint, setAlpacaEndpoint] = useState(botData.alpacaEndpoint);
+  const [alpacaKey, setAlpacaKey] = useState(botData.alpacaKey);
+  const [alpacaSecret, setAlpacaSecret] = useState(botData.alpacaSecret);
+  const [tradingStrategy, setTradingStrategy] = useState(botData.tradingStrat);
+  const [startingAmount, setStartingAmount] = useState(botData.startCash);
+  const [cashRiskPercentage, setCashRiskPercentage] = useState(
+    botData.riskPercent
+  );
+  const [tradeProfitOrder, setTradeProfitOrder] = useState(
+    botData.tradeProfitOrder
+  );
 
   return (
     <>
@@ -52,7 +29,7 @@ function NewBotModal({ closeModal }) {
             <button onClick={() => closeModal(false)}> X </button>
           </div>
           <div className="title">
-            <h1> Create New Bot</h1>
+            <h1> Edit {currentBotInfo.botName}</h1>
           </div>
           <div className="body">
             <div className="bot-name-input">
@@ -94,42 +71,6 @@ function NewBotModal({ closeModal }) {
             </div>
             <div className="stockInformation">
               <h3>Trading Info</h3>
-              <div className="stock-input">
-                <label>Stock:</label>
-              </div>
-              {/* <StockSearchForm /> */}
-              <form className="d-flex" onSubmit={handleSearch}>
-                <input
-                  type="text"
-                  className="form-control me-2"
-                  name="searchQuery"
-                  placeholder="Enter stock symbol"
-                />
-                <button
-                  className="btn btn-outline-success"
-                  id="searchButton"
-                  type="submit"
-                >
-                  Search
-                </button>
-              </form>
-
-              <select
-                className="form-select"
-                value={stockSymbol}
-                onChange={(e) => setStockSymbol(e.target.value)}
-              >
-                <option hidden>Select a stock</option>
-                {searchResults.map((result, index) => (
-                  <option
-                    className="drop-item"
-                    key={index}
-                    value={result.ticker}
-                  >
-                    {result.ticker}
-                  </option>
-                ))}
-              </select>
               <div className="trading-strategy-input">
                 <label>Strategy:</label>
                 <select
@@ -193,7 +134,6 @@ function NewBotModal({ closeModal }) {
                     !alpacaEndpoint ||
                     !alpacaKey ||
                     !alpacaSecret ||
-                    !stockSymbol ||
                     !tradingStrategy ||
                     !startingAmount ||
                     !cashRiskPercentage ||
@@ -201,32 +141,30 @@ function NewBotModal({ closeModal }) {
                   ) {
                     alert("Please fill in all the fields");
                   } else {
-                    const response = await createNewBot(
+                    const response = await updateBot(
                       userEmail,
+                      currentBotInfo.botName,
                       botName.trim(),
                       alpacaEndpoint,
                       alpacaKey,
                       alpacaSecret,
-                      stockSymbol,
+                      currentBotInfo.stockSymbol,
                       tradingStrategy,
-                      startingAmount,
+                      currentBotInfo.startCash,
                       cashRiskPercentage,
                       tradeProfitOrder
                     );
-
-                    console.log("response", response.status);
                     if (response.status === "name taken") {
                       alert("Bot name already taken for this user");
                       return;
                     } else {
-                      console.log("made  it here");
                       closeModal(false);
                       window.location.reload();
                     }
                   }
                 }}
               >
-                Create New Bot
+                Update Bot
               </button>
             </div>
           </div>
@@ -236,4 +174,4 @@ function NewBotModal({ closeModal }) {
   );
 }
 
-export default NewBotModal;
+export default EditBotModal;

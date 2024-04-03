@@ -27,6 +27,7 @@ const newUser = require("./routes/newUser");
 const getBotArray = require("./routes/getBotArray");
 const runTradeBot = require("./routes/runTradeBot");
 const getStocks = require("./routes/getStocks");
+const updateBot = require("./routes/updateBot");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -40,11 +41,13 @@ app.use("/CreateUserApi", newUser);
 
 app.use("/UserCheckApi", userAuth);
 
-app.use("/GetUserBots", getBotArray);
+app.use("/GetUserBotsApi", getBotArray);
 
 app.use("/GetStocks", getStocks);
 
 app.use("/DeleteBotApi", deleteBot);
+
+app.use("/UpdateBotApi", updateBot);
 
 const server = app.listen(PORT, () => {
   console.log("server is running on port", PORT);

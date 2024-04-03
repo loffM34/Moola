@@ -1,6 +1,5 @@
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { runBot } from "../scripts/runBot";
 import Bots from "./Bots";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import NewBotModal from "./NewBotModal";

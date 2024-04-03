@@ -8,16 +8,17 @@ import NoPage from "./pages/NoPage";
 import UserDash from "./pages/UserDash";
 
 function App() {
-  useEffect(() => {
-    const handleBeforeUnload = (event) => {
-      clearAuthContext();
-      localStorage.removeItem("token");
-    };
-    window.addEventListener("beforeunload", handleBeforeUnload);
-    return () => {
-      window.removeEventListener("beforeunload", handleBeforeUnload);
-    };
-  }, []);
+  //Logic for clearing userdata but breaks when creating new bot or refreshing page
+  // useEffect(() => {
+  //   const handleBeforeUnload = (event) => {
+  //     clearAuthContext();
+  //     localStorage.removeItem("token");
+  //   };
+  //   window.addEventListener("beforeunload", handleBeforeUnload);
+  //   return () => {
+  //     window.removeEventListener("beforeunload", handleBeforeUnload);
+  //   };
+  // }, []);
 
   return (
     <div>

@@ -1,10 +1,10 @@
 const express = require("express");
 const router = express.Router();
-const mongoose = require("mongoose");
 const UserData = require("../mongo");
 
 router.post("/", async (req, res) => {
   const user_email = req.body.user_email;
+  const current_bot_name = req.body.current_bot_name;
   const bot_name = req.body.bot_name;
   const alpaca_endpoint = req.body.alpaca_endpoint;
   const alpaca_key = req.body.alpaca_key;
@@ -31,28 +31,34 @@ router.post("/", async (req, res) => {
     } else {
       res.json({ status: "name avaiable" });
     }
-
-    await user.updateOne({
-      $push: {
-        userBots: {
-          botName: bot_name,
-          alpacaEndpoint: alpaca_endpoint,
-          alpacaKey: alpaca_key,
-          alpacaSecret: alpaca_secret,
-          stockSymbol: stock_symbol,
-          tradingStrat: trading_strat,
-          startCash: start_cash,
-          riskPercent: risk_percentage,
-          tradeProfitOrder: trade_profit_order,
+    await user.updateOne(
+      {
+        $set: {
+          "userBots.$[bot]": {
+            botName: bot_name,
+            alpacaEndpoint: alpaca_endpoint,
+            alpacaKey: alpaca_key,
+            alpacaSecret: alpaca_secret,
+            stockSymbol: stock_symbol,
+            tradingStrat: trading_strat,
+            startCash: start_cash,
+            riskPercent: risk_percentage,
+            tradeProfitOrder: trade_profit_order,
+          },
         },
       },
-    });
-    console.log("successfully added");
+      {
+        arrayFilters: [
+          {
+            "bot.botName": current_bot_name,
+          },
+        ],
+      }
+    );
+    console.log("Bot Updated from user's bots");
   } catch (error) {
     console.error(error);
   }
-
-  //find the user and add array of objects if not already exisiting and then create add a new bot with parameters into the file
 });
 
 module.exports = router;

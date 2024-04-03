@@ -51,12 +51,11 @@ function Sidebar() {
           </li>
           <li className="profile">
             <div className="profile_details">
-              <img src="#" alt="profile image" />
+              <div className="profilePicture"></div>
               <div className="profile_content">
                 <div className="name">
                   {user.firstName} {user.lastName}
                 </div>
-                <div className="designation">Admin</div>
               </div>
             </div>
             <i

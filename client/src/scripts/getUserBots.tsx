@@ -1,6 +1,6 @@
 export const getUserBots = async (email) => {
   try {
-    const response = await fetch("http://localhost:9000/GetUserBots", {
+    const response = await fetch("http://localhost:9000/GetUserBotsApi", {
       method: "POST",
       body: JSON.stringify({
         email: email,

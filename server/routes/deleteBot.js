@@ -1,6 +1,5 @@
 const express = require("express");
 const router = express.Router();
-const mongoose = require("mongoose");
 const UserData = require("../mongo");
 
 router.post("/", async (req, res) => {
