@@ -203,7 +203,7 @@ body {
   width: 78px;
   left: 0;
   bottom: -8px;
-  padding: 10px 14px;
+  padding: 10px 1px;
   overflow: hidden;
   transition: all 0.5s ease;
 }
@@ -241,7 +241,14 @@ body {
   border-radius: 5px;
   cursor: pointer;
   transition: all 0.5s ease;
-  top:60%;
+  top: 60%;
+}
+
+.sidebar .profile #log_out:hover {
+  background-color: white;
+  color: black;
+  border: 2px solid black;
+  border-radius: 10px;
 }
 
 .profilePicture {
@@ -255,7 +262,7 @@ body {
   background-image: url("./images/profileImage.jpg");
   background-size: cover;
   padding: 10px;
-  margin:10px;
+  margin: 10px;
   margin-left: 50px;
   margin-top: 10px;
 }
@@ -263,6 +270,13 @@ body {
 .sidebar.open .profile #log_out {
   width: 50px;
   background: none;
+}
+
+.sidebar.open .profile #log_out:hover {
+  background-color: white;
+  color: black;
+  border: 2px solid black;
+  border-radius: 10px;
 }
 
 .home-section {

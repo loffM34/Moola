@@ -62,7 +62,7 @@ function Sidebar() {
               className="bi bi-box-arrow-in-left"
               id="log_out"
               onClick={handleLogout}
-            ></i>{" "}
+            ></i>
           </li>
         </ul>
       </div>

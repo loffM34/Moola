@@ -1,5 +1,5 @@
 .bots {
-  background-color: grey;
+  background-color: lightgrey;
   border-radius: 25px;
   min-height: 200px;
   min-width: 200px;
@@ -7,6 +7,14 @@
   text-align: center;
   position: relative;
   border: 2px solid black;
+  box-shadow: 5px 10px black;
+  transition: transform 0.3 ease;
+}
+
+.bots:hover:not(.modalOpen) {
+  transition: 0.5s ease;
+  transform: scale(1.05);
+  box-shadow: 7px 12px rgb(28, 26, 26);
 }
 
 .stockSymbol {

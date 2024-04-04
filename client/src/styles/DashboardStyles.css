@@ -18,6 +18,11 @@
   background-image: url("./images/createBotImage.png");
   background-size: cover;
   padding: 10px;
+  transition: transfrom 0.3s ease;
+}
+
+.openNewBotModal:hover {
+  transform: scale(1.03);
 }
 
 .body {

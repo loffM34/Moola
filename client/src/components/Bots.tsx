@@ -23,7 +23,7 @@ function Bots({ botName, stockSymbol }) {
 
   return (
     <>
-      <div className="bots">
+      <div className={`bots ${openEditBotModal ? "modalOpen" : ""}`}>
         <div className="stockSymbol">
           <p>{stockSymbol}</p>
         </div>
