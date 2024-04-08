@@ -11,6 +11,8 @@ const containerStyles: React.CSSProperties = {
   border: "1px solid #DBD8D0",
   borderRadius: "8px",
   marginTop: "200px",
+  backgroundColor:"white",
+  position:"relative",
 };
 
 const inputContainerStyles: React.CSSProperties = {

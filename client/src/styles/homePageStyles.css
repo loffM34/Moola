@@ -1,0 +1,12 @@
+.companyName {
+  color: blue;
+  z-index: 2;
+  position: relative;
+  margin: auto;
+  margin-top: 25%;
+  outline: solid 1px black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}

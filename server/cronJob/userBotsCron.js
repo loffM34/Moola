@@ -16,7 +16,7 @@ async function getAllUsers() {
 
 module.exports = async function runUserBots(logger) {
   const pid = process.pid;
-  console.log("Process PID: ", pid)
+  console.log("Process PID: ", pid);
   try {
     const users = await getAllUsers();
     //loop through all of the users in the users array (Nested for loops is ineffiecent but maybe nice have fix later)
@@ -27,6 +27,7 @@ module.exports = async function runUserBots(logger) {
         var botName = users[i].userBots[j].botName.replace(/\s/g, "");
         var alpacaKey = users[i].userBots[j].alpacaKey;
         var alpacaSecret = users[i].userBots[j].alpacaSecret;
+        var alpacaEndpoint = users[i].userBots[j].alpacaEndpoint;
         var stockSymbol = users[i].userBots[j].stockSymbol;
         var tradingStrat = users[i].userBots[j].tradingStrat;
         var startCash = users[i].userBots[j].startCash;
@@ -34,11 +35,11 @@ module.exports = async function runUserBots(logger) {
         var tradeProfitOrder = users[i].userBots[j].tradeProfitOrder;
 
         if (tradingStrat == "dayTrader") {
-          python_file = "dayTrader.py";
+          python_file = ".\\botPythonScripts\\dayTrader.py";
         } else if (tradingStrat == "intermediateTrader") {
-          python_file = "intermediateTrader.py";
+          python_file = ".\\botPythonScripts\\intermediateTrader.py";
         } else if (tradingStrat == "longTermTrader") {
-          python_file = "longTermTrader.py";
+          python_file = ".\\botPythonScripts\\longTermTrader.py";
         } else {
           python_file = "DNE.py";
           console.log("ERROR SETTING PYTHON FILE NAME");
@@ -53,6 +54,8 @@ module.exports = async function runUserBots(logger) {
           alpacaKey +
           " " +
           alpacaSecret +
+          " " +
+          alpacaEndpoint +
           " " +
           stockSymbol +
           " " +
