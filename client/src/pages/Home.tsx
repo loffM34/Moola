@@ -6,7 +6,7 @@ function Home() {
     <>
       <ParticlesComponent />
       <Header />
-      <h1 className="companyName">Home Page</h1>
+      <h1 className="companyName">Cool Company Name / Logo</h1>
     </>
   );
 }

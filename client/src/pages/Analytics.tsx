@@ -1,9 +1,7 @@
 import Sidebar from "../components/Sidebar";
-import Dashboard from "../components/Dashboard";
-import { useState, useEffect } from "react";
-import "../styles/userDashStyles.css";
-
-function UserDash() {
+import ParticlesComponent from "../components/Particles";
+import { useEffect, useState } from "react";
+function Analytics() {
   const [darkMode, setDarkMode] = useState(() => {
     const savedDarkMode = localStorage.getItem("darkMode");
     return savedDarkMode === "true";
@@ -26,10 +24,10 @@ function UserDash() {
     <>
       <div className={`userDash ${darkMode ? "dark-mode" : ""}`}>
         <Sidebar darkMode={darkMode} toggleDarkMode={handleToggleDarkMode} />
-        <Dashboard darkMode={darkMode} />
+        <h1>Bot Anaylitics</h1>
       </div>
     </>
   );
 }
 
-export default UserDash;
+export default Analytics;

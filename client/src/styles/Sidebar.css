@@ -381,6 +381,9 @@ body {
   width: 26px;
 }
 
+
+/* SIDEBAR DARK MODE STLYES */
+
 .sidebar.dark-mode,.sidebar.opendark-mode{
   background-color: black;
 }

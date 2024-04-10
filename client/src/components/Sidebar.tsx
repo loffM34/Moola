@@ -1,15 +1,15 @@
 import "../styles/Sidebar.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getAuthContext, clearAuthContext } from "../scripts/authContext";
 
 interface SidebarProps {
-  darkMode:boolean;
-  toggleDarkMode:()=> void;
+  darkMode: boolean;
+  toggleDarkMode: () => void;
 }
 
-function Sidebar({darkMode,toggleDarkMode}:SidebarProps) {
+function Sidebar({ darkMode, toggleDarkMode }: SidebarProps) {
   const history = useNavigate();
   const user = getAuthContext();
 
@@ -23,14 +23,8 @@ function Sidebar({darkMode,toggleDarkMode}:SidebarProps) {
   function handleLogout() {
     clearAuthContext();
     localStorage.removeItem("token");
-    history("/Login");
+    history("/Home");
   }
-
-  // function handleToggleDarkMode() {
-  //   setDarkMode((prevMode) => {
-  //     return !prevMode;
-  //   });
-  // }
 
   return (
     <>
@@ -45,14 +39,14 @@ function Sidebar({darkMode,toggleDarkMode}:SidebarProps) {
         </div>
         <ul className="nav-list">
           <li>
-            <a href="#">
+            <a href="/UserDash">
               <i className="bi bi-grid"></i>
               <span className="link_name"> Dashboard</span>
             </a>
             <span className="tooltip">Dashboard</span>
           </li>
           <li>
-            <a href="#">
+            <a href="/BotAnalytics">
               <i className="bi bi-bar-chart-line"></i>
               <span className="link_name"> Bot Analytics</span>
             </a>
