@@ -4,11 +4,17 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getAuthContext, clearAuthContext } from "../scripts/authContext";
 
-function Sidebar() {
+interface SidebarProps {
+  darkMode:boolean;
+  toggleDarkMode:()=> void;
+}
+
+function Sidebar({darkMode,toggleDarkMode}:SidebarProps) {
   const history = useNavigate();
   const user = getAuthContext();
 
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  // const [darkMode, setDarkMode] = useState(false);
 
   function toggleSidebar() {
     setIsSidebarOpen((prevState) => !prevState);
@@ -20,9 +26,19 @@ function Sidebar() {
     history("/Login");
   }
 
+  // function handleToggleDarkMode() {
+  //   setDarkMode((prevMode) => {
+  //     return !prevMode;
+  //   });
+  // }
+
   return (
     <>
-      <div className={`sidebar ${isSidebarOpen ? "open" : ""}`}>
+      <div
+        className={`sidebar ${isSidebarOpen ? "open" : ""}${
+          darkMode ? "dark-mode" : ""
+        }`}
+      >
         <div className="logo_details">
           <div className="logo_name">Website name</div>
           <i className="bi bi-list" id="btn" onClick={toggleSidebar}></i>
@@ -49,6 +65,16 @@ function Sidebar() {
             </a>
             <span className="tooltip">Stock Info</span>
           </li>
+          <p className="toggleText">Toggle Display</p>
+          <div className="displayToggle">
+            <input
+              type="checkbox"
+              id="darkmode-toggle"
+              onChange={toggleDarkMode}
+              checked={darkMode}
+            />
+            <label id="toggleLabel" htmlFor="darkmode-toggle"></label>
+          </div>
           <li className="profile">
             <div className="profile_details">
               <div className="profilePicture"></div>

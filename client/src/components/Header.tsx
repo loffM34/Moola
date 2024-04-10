@@ -3,7 +3,7 @@ function Header() {
     <>
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
         <div className="container-fluid">
-          <a className="navbar-brand" href="#">
+          <a className="navbar-brand" href="/Home">
             Website Name
           </a>
           <button
@@ -51,14 +51,15 @@ function Header() {
                     </a>
                   </li>
                   <li>
-                    <a className="dropdown-item" href="mailto:Company@companyEmail.com">
+                    <a
+                      className="dropdown-item"
+                      href="mailto:Company@companyEmail.com"
+                    >
                       Email Us At: Company@companyEmail.com
                     </a>
                   </li>
-                 
                 </ul>
               </li>
-
             </ul>
           </div>
         </div>

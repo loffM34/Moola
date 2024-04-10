@@ -16,15 +16,16 @@ body {
   width: 78px;
   padding: 6px 14px;
   z-index: 99;
-  background-color: black;
+  background-color: #007BFF;
   transition: all 0.5s ease;
   position: fixed;
   top: 0;
   left: 0;
 }
 
-.sidebar.open {
+.sidebar.open, .sidebar.opendark-mode {
   width: 250px;
+  
 }
 
 .sidebar .logo_details {
@@ -32,11 +33,13 @@ body {
   display: flex;
   align-items: center;
   position: relative;
+  
 }
 
 .sidebar .logo_details .icon {
   opacity: 0;
   transition: all 0.5s ease;
+  
 }
 
 .sidebar .logo_details .logo_name {
@@ -45,11 +48,13 @@ body {
   font-weight: 600;
   opacity: 0;
   transition: all 0.5s ease;
+  
 }
 
 .sidebar.open .logo_details .icon,
-.sidebar.open .logo_details .logo_name {
+.sidebar.open .logo_details .logo_name, .sidebar.opendark-mode.logo_details .icon, .sidebar.opendark-mode .logo_details .logo_name {
   opacity: 1;
+  
 }
 
 .sidebar .logo_details #btn {
@@ -63,7 +68,7 @@ body {
   transition: all 0.5s ease;
 }
 
-.sidebar.open .logo_details #btn {
+.sidebar.open .logo_details #btn, .sidebar.opendark-mode .logo_details #btn {
   text-align: right;
 }
 
@@ -74,12 +79,14 @@ body {
   min-width: 50px;
   font-size: 25px;
   text-align: center;
+  
 }
 
 .sidebar .nav-list {
   padding: 0;
   margin-top: 20px;
   height: 100%;
+  
 }
 
 .sidebar li {
@@ -112,7 +119,7 @@ body {
   transform: translateY(-50%);
 }
 
-.sidebar.open li .tooltip {
+.sidebar.open li .tooltip, .sidebar.opendark-mode li .tooltip {
   display: none;
 }
 
@@ -127,13 +134,15 @@ body {
   border-radius: 5px;
   background-color: lightblue;
   transition: all 0.5s ease;
+  
 }
 
 .sidebar input::placeholder {
   color: grey;
+  
 }
 
-.sidebar.open input {
+.sidebar.open input, .sidebar.opendark-mode input {
   width: 100%;
   padding: 0 20px 0 50px;
 }
@@ -144,7 +153,7 @@ body {
   width: 100%;
   align-items: center;
   text-decoration: none;
-  background-color: black;
+  background-color: #007BFF;
   position: relative;
   transition: all 0.5s ease;
   z-index: 12;
@@ -185,7 +194,7 @@ body {
   color: black;
 }
 
-.sidebar.open li a .link_name {
+.sidebar.open li a .link_name ,.sidebar.opendark-mode li a .link_name{
   opacity: 1;
   pointer-events: auto;
 }
@@ -206,9 +215,10 @@ body {
   padding: 10px 1px;
   overflow: hidden;
   transition: all 0.5s ease;
+  
 }
 
-.sidebar.open li.profile {
+.sidebar.open li.profile, .sidebar.opendark-mode li.profile  {
   width: 250px;
 }
 
@@ -216,6 +226,7 @@ body {
   display: flex;
   align-items: center;
   flex-wrap: nowrap;
+  
 }
 
 .sidebar li.profile .name,
@@ -234,7 +245,7 @@ body {
   position: absolute;
   right: 0;
   transform: translateY(-50%);
-  background-color: black;
+  background-color: #007BFF;
   width: 100%;
   height: 60px;
   line-height: 60px;
@@ -244,7 +255,7 @@ body {
   top: 60%;
 }
 
-.sidebar .profile #log_out:hover {
+.sidebar .profile #log_out:hover, .sidebar.dark-mode .profile #log_out:hover{
   background-color: white;
   color: black;
   border: 2px solid black;
@@ -267,12 +278,12 @@ body {
   margin-top: 10px;
 }
 
-.sidebar.open .profile #log_out {
+.sidebar.open .profile #log_out, .sidebar.opendark-mode .profile #log_out{
   width: 50px;
   background: none;
 }
 
-.sidebar.open .profile #log_out:hover {
+.sidebar.open .profile #log_out:hover, .sidebar.opendark-mode .profile #log_out:hover {
   background-color: white;
   color: black;
   border: 2px solid black;
@@ -288,6 +299,7 @@ body {
   width: calc(100% - 78px);
   transition: all 0.5s ease;
   z-index: 2;
+
 }
 
 .home-section .text {
@@ -295,9 +307,89 @@ body {
   font-size: 25px;
   font-weight: 500;
   margin: 18px;
+  
 }
 
-.sidebar.open ~ .home-section {
+.sidebar.open ~ .home-section ,.sidebar.opendark-mode ~ .home-section{
   left: 250px;
   width: calc(100% - 250px);
+  
+}
+
+.toggleText {
+  color: white;
+  position: absolute;
+  margin-top: 8px;
+  top: 88%;
+  right: 78px;
+}
+
+.displayToggle {
+  margin: 0px;
+  padding: 0px;
+  width: 50px;
+  position: absolute;
+  top: 89%;
+  right: 10px;
+}
+
+#toggleLabel {
+  width: 50px;
+  height: 20px;
+  position: relative;
+  display: block;
+  background-color: #ebebeb;
+  border-radius: 200px;
+  box-shadow: inset 0px 5px 15px rgba(0, 0, 0, 0.4),
+    inset 0px -5px 15px rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+  transition: 0.3s;
+  margin: 0px;
+  padding: 0;
+}
+
+#toggleLabel:after {
+  content: "";
+  width: 18px;
+  height: 18px;
+  position: absolute;
+  top: 1px;
+  left: -1px;
+  background: linear-gradient(180deg, #ffcc89, #d8860b);
+  border-radius: 180px;
+  box-shadow: 0px 5px rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+}
+
+#darkmode-toggle {
+  width: 0px;
+  height: 0;
+  visibility: hidden;
+}
+
+#darkmode-toggle::checked + #toggleLabel {
+  background: #242424;
+}
+
+#darkmode-toggle:checked + #toggleLabel:after {
+  left: 49px;
+  transform: translateX(-100%);
+  background: linear-gradient(180deg, #777, #6e6d6d);
+}
+
+#toggleLabel:active:after {
+  width: 26px;
+}
+
+.sidebar.dark-mode,.sidebar.opendark-mode{
+  background-color: black;
+}
+
+.sidebar.opendark-mode li a, .sidebar.dark-mode li a{
+  background-color: black;
+}
+
+
+.sidebar.dark-mode .profile #log_out{
+  background-color: black;
 }

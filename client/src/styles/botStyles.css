@@ -1,5 +1,4 @@
 .bots {
-  background-color: lightgrey;
   border-radius: 25px;
   min-height: 200px;
   min-width: 200px;
@@ -7,19 +6,19 @@
   text-align: center;
   position: relative;
   border: 2px solid black;
-  box-shadow: 5px 10px black;
+  box-shadow: 5px 10px #8fb9e8;
   transition: transform 0.3 ease;
 }
+
 
 .bots:hover:not(.modalOpen) {
   transition: 0.5s ease;
   transform: scale(1.05);
-  box-shadow: 7px 12px rgb(28, 26, 26);
+  box-shadow: 7px 12px #007bff;
 }
 
 .stockSymbol {
   font-size: 50px;
-  /* background: white; */
 }
 
 .botButtons {
@@ -52,4 +51,18 @@
   background-color: white;
   border-radius: 5px;
   transition-duration: 0.5s;
+}
+
+
+/* BOTs DARK MODE STYLES */
+
+.bots.dark-mode{
+  box-shadow: 5px 10px black;
+  transition: transform 0.3 ease;
+  color:white;
+}
+.bots.dark-mode:hover:not(.modalOpen){
+  box-shadow: 5px 10px lightgrey;
+  transform: scale(1.05);
+  transition: transform 0.3 ease;
 }

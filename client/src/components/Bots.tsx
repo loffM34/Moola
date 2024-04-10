@@ -7,7 +7,7 @@ import { getAuthContext } from "../scripts/authContext";
 
 const user = getAuthContext();
 
-function Bots({ botName, stockSymbol }) {
+function Bots({ botName, stockSymbol,darkMode }) {
   const [openEditBotModal, setOpenModal] = useState(false);
   const [botData, setBotData] = useState(null);
 
@@ -23,7 +23,9 @@ function Bots({ botName, stockSymbol }) {
 
   return (
     <>
-      <div className={`bots ${openEditBotModal ? "modalOpen" : ""}`}>
+      <div className={`bots ${openEditBotModal ? "modalOpen" : ""}${
+          darkMode ? "dark-mode" : ""
+        }`}>
         <div className="stockSymbol">
           <p>{stockSymbol}</p>
         </div>

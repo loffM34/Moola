@@ -1,5 +1,5 @@
-import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
+import React from "react";
 import Bots from "./Bots";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import NewBotModal from "./NewBotModal";
@@ -7,8 +7,10 @@ import "../styles/DashboardStyles.css";
 import { getAuthContext } from "../scripts/authContext";
 import { getUserBots } from "../scripts/getUserBots";
 
-function Dashboard() {
+function Dashboard({ darkMode }) {
   const user = getAuthContext();
+
+  console.log("Display Toggle", darkMode);
 
   const [openNewBotModal, setOpenModal] = useState(false);
 
@@ -28,12 +30,12 @@ function Dashboard() {
     fetchUserBots();
   }, [setOpenModal]);
 
-  console.log("UserBOts", userBots);
+  console.log("UserBots", userBots);
 
   return (
-    <section className="home-section">
+    <section className={`home-section ${darkMode ? "dark-dashboard" : ""}`}>
       <div className="dashHeader">
-        <h1> Welcome, {user.firstName} </h1>
+        <h1 className="greeting"> Welcome, {user.firstName} </h1>
       </div>
       <div className="body">
         <button
@@ -51,6 +53,7 @@ function Dashboard() {
               key={bot.botName}
               botName={bot.botName}
               stockSymbol={bot.stockSymbol}
+              darkMode ={darkMode}
             />
           ))}
       </div>

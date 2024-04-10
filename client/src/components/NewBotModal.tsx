@@ -19,6 +19,13 @@ function NewBotModal({ closeModal }) {
   const [searchResults, setSearchResults] = useState([]);
   const [stockSymbol, setStockSymbol] = useState("");
 
+  var validSymbol = /^[A-Z]+$/.test(stockSymbol);
+  var validStart = parseFloat(startingAmount) > 0;
+  var validRisk =
+    parseFloat(cashRiskPercentage) > 0 && parseFloat(cashRiskPercentage) <= 100;
+  var validProfitOrder =
+    parseFloat(tradeProfitOrder) > parseFloat(startingAmount);
+
   async function handleStockSearch(query) {
     try {
       const response = await fetch(
@@ -94,17 +101,40 @@ function NewBotModal({ closeModal }) {
             </div>
             <div className="stockInformation">
               <h3>Trading Info</h3>
-              <div className="stock-input">
-                <label>Stock:</label>
-              </div>
-              {/* <StockSearchForm /> */}
+              <div className="stock-input"></div>
+
               <form className="d-flex" onSubmit={handleSearch}>
                 <input
-                  type="text"
                   className="form-control me-2"
+                  type="text"
                   name="searchQuery"
-                  placeholder="Enter stock symbol"
+                  placeholder="Search for a stock"
+                  list="stockOptions"
+                  value={stockSymbol.toLowerCase()}
+                  style={{
+                    borderColor:
+                      /^[A-Z]+$/.test(stockSymbol) || stockSymbol.length == 0
+                        ? "grey"
+                        : "red",
+                    borderWidth:
+                      /^[A-Z]+$/.test(stockSymbol) || stockSymbol.length == 0
+                        ? "1px"
+                        : "2px",
+                  }}
+                  onChange={(e) => setStockSymbol(e.target.value)}
                 />
+                <datalist id="stockOptions">
+                  <option hidden>Select a stock</option>
+                  {searchResults.map((result, index) => (
+                    <option
+                      className="drop-item"
+                      key={index}
+                      value={result.ticker}
+                    >
+                      {result.ticker}
+                    </option>
+                  ))}
+                </datalist>
                 <button
                   className="btn btn-outline-success"
                   id="searchButton"
@@ -114,22 +144,6 @@ function NewBotModal({ closeModal }) {
                 </button>
               </form>
 
-              <select
-                className="form-select"
-                value={stockSymbol}
-                onChange={(e) => setStockSymbol(e.target.value)}
-              >
-                <option hidden>Select a stock</option>
-                {searchResults.map((result, index) => (
-                  <option
-                    className="drop-item"
-                    key={index}
-                    value={result.ticker}
-                  >
-                    {result.ticker}
-                  </option>
-                ))}
-              </select>
               <div className="trading-strategy-input">
                 <label>Strategy:</label>
                 <select
@@ -156,6 +170,18 @@ function NewBotModal({ closeModal }) {
                   placeholder="Starting Amount"
                   min="5"
                   max="1000000"
+                  style={{
+                    borderColor:
+                      parseFloat(startingAmount) > 0 ||
+                      startingAmount.length == 0
+                        ? "grey"
+                        : "red",
+                    borderWidth:
+                      parseFloat(startingAmount) > 0 ||
+                      startingAmount.length == 0
+                        ? "1px"
+                        : "2px",
+                  }}
                   value={startingAmount}
                   onChange={(e) => setStartingAmount(e.target.value)}
                 />
@@ -169,6 +195,20 @@ function NewBotModal({ closeModal }) {
                   placeholder="Cash Risk Percentage"
                   min="1"
                   max="100"
+                  style={{
+                    borderColor:
+                      (parseFloat(cashRiskPercentage) > 0 &&
+                        parseFloat(cashRiskPercentage) <= 100) ||
+                      cashRiskPercentage.length == 0
+                        ? "grey"
+                        : "red",
+                    borderWidth:
+                      (parseFloat(cashRiskPercentage) > 0 &&
+                        parseFloat(cashRiskPercentage) <= 100) ||
+                      cashRiskPercentage.length == 0
+                        ? "1px"
+                        : "2px",
+                  }}
                   value={cashRiskPercentage}
                   onChange={(e) => setCashRiskPercentage(e.target.value)}
                 />
@@ -180,6 +220,20 @@ function NewBotModal({ closeModal }) {
                   required
                   className="form-control"
                   placeholder="Trade Profit Order"
+                  style={{
+                    borderColor:
+                      parseFloat(tradeProfitOrder) >
+                        parseFloat(startingAmount) ||
+                      tradeProfitOrder.length == 0
+                        ? "grey"
+                        : "red",
+                    borderWidth:
+                      parseFloat(tradeProfitOrder) >
+                        parseFloat(startingAmount) ||
+                      tradeProfitOrder.length == 0
+                        ? "1px"
+                        : "2px",
+                  }}
                   value={tradeProfitOrder}
                   onChange={(e) => setTradeProfitOrder(e.target.value)}
                 />
@@ -200,6 +254,20 @@ function NewBotModal({ closeModal }) {
                     !tradeProfitOrder
                   ) {
                     alert("Please fill in all the fields");
+                  }
+                  if (
+                    !validSymbol ||
+                    !validStart ||
+                    !validRisk ||
+                    !validProfitOrder
+                  ) {
+                    console.log(
+                      validSymbol,
+                      validStart,
+                      validRisk,
+                      validProfitOrder
+                    );
+                    alert("Invalid Data entered. Try again.");
                   } else {
                     const response = await createNewBot(
                       userEmail,
