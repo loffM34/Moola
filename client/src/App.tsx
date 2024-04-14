@@ -6,7 +6,7 @@ import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import NoPage from "./pages/NoPage";
 import UserDash from "./pages/UserDash";
-import Analytics from "./pages/Analytics";
+import Analytics from "./pages/AnalyticsPage";
 
 function App() {
   //Logic for clearing userdata but breaks when creating new bot or refreshing page

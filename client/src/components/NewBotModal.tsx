@@ -261,12 +261,7 @@ function NewBotModal({ closeModal }) {
                     !validRisk ||
                     !validProfitOrder
                   ) {
-                    console.log(
-                      validSymbol,
-                      validStart,
-                      validRisk,
-                      validProfitOrder
-                    );
+                    
                     alert("Invalid Data entered. Try again.");
                   } else {
                     const response = await createNewBot(

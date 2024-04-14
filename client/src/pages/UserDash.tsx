@@ -1,7 +1,7 @@
 import Sidebar from "../components/Sidebar";
 import Dashboard from "../components/Dashboard";
 import { useState, useEffect } from "react";
-import "../styles/userDashStyles.css";
+import "../styles/pageStyles.css";
 
 function UserDash() {
   const [darkMode, setDarkMode] = useState(() => {

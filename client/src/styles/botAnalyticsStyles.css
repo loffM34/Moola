@@ -1,0 +1,51 @@
+.dashHeader {
+  display: block;
+  margin: 10px 10px 0px;
+}
+
+.botAnalytics-bots{
+  width:100%;
+}
+
+.botAnalytics-bots .bots {
+  width: 80%;
+  transition: 0.5s ease;
+  margin-top: 20px;
+  left: 5px;
+}
+
+.botAnalytics-bots .bots:hover {
+  transition: 0.5s ease;
+  left: 3%;
+}
+
+.botAnalytics-bots .botButtons {
+  display: none;
+}
+
+.botAnalytics-bots .stockSymbol {
+  background-color: red;
+  width: auto;
+  height: auto;
+  position: absolute;
+  top: 50%;
+  left: 10px;
+}
+
+.botAnalytics-bots .botName {
+  background-color: aquamarine;
+  width: 100px;
+  width: auto;
+  height: auto;
+  position: absolute;
+  top: 5px;
+  left: 10px;
+  font-size: large;
+}
+
+
+.botAnalytics-bots .stockData{
+  background-color: green;
+  height:100px;
+  position: relative;
+}

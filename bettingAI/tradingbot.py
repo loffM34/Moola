@@ -136,6 +136,7 @@ strategy = MLTrader(name='mlstrat', broker = broker,
 
 
 #Run bot Live
+
 trader = Trader()
 trader.add_strategy(strategy)
 trader.run_all()

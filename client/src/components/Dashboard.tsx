@@ -54,6 +54,9 @@ function Dashboard({ darkMode }) {
               botName={bot.botName}
               stockSymbol={bot.stockSymbol}
               darkMode ={darkMode}
+              stockPrice={""}
+              stockDollarChange={""}
+              stockPercentChange={""}
             />
           ))}
       </div>

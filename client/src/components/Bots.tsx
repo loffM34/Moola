@@ -7,7 +7,7 @@ import { getAuthContext } from "../scripts/authContext";
 
 const user = getAuthContext();
 
-function Bots({ botName, stockSymbol, darkMode }) {
+function Bots({ botName, stockSymbol, darkMode,stockPrice,stockDollarChange,stockPercentChange }) {
   const [openEditBotModal, setOpenModal] = useState(false);
   const [botData, setBotData] = useState(null);
 
@@ -33,6 +33,9 @@ function Bots({ botName, stockSymbol, darkMode }) {
         </div>
         <div className="botName">
           <p>{botName}</p>
+        </div>
+        <div className="stockData">
+          <p>{stockDollarChange} {stockPrice} {stockPercentChange}</p>
         </div>
         <div className="botButtons">
           <button

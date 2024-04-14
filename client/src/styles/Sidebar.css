@@ -16,16 +16,16 @@ body {
   width: 78px;
   padding: 6px 14px;
   z-index: 99;
-  background-color: #007BFF;
+  background-color: #007bff;
   transition: all 0.5s ease;
   position: fixed;
   top: 0;
   left: 0;
 }
 
-.sidebar.open, .sidebar.opendark-mode {
+.sidebar.open,
+.sidebar.opendark-mode {
   width: 250px;
-  
 }
 
 .sidebar .logo_details {
@@ -33,13 +33,11 @@ body {
   display: flex;
   align-items: center;
   position: relative;
-  
 }
 
 .sidebar .logo_details .icon {
   opacity: 0;
   transition: all 0.5s ease;
-  
 }
 
 .sidebar .logo_details .logo_name {
@@ -48,13 +46,13 @@ body {
   font-weight: 600;
   opacity: 0;
   transition: all 0.5s ease;
-  
 }
 
 .sidebar.open .logo_details .icon,
-.sidebar.open .logo_details .logo_name, .sidebar.opendark-mode.logo_details .icon, .sidebar.opendark-mode .logo_details .logo_name {
+.sidebar.open .logo_details .logo_name,
+.sidebar.opendark-mode.logo_details .icon,
+.sidebar.opendark-mode .logo_details .logo_name {
   opacity: 1;
-  
 }
 
 .sidebar .logo_details #btn {
@@ -68,7 +66,8 @@ body {
   transition: all 0.5s ease;
 }
 
-.sidebar.open .logo_details #btn, .sidebar.opendark-mode .logo_details #btn {
+.sidebar.open .logo_details #btn,
+.sidebar.opendark-mode .logo_details #btn {
   text-align: right;
 }
 
@@ -79,14 +78,12 @@ body {
   min-width: 50px;
   font-size: 25px;
   text-align: center;
-  
 }
 
 .sidebar .nav-list {
   padding: 0;
   margin-top: 20px;
   height: 100%;
-  
 }
 
 .sidebar li {
@@ -119,7 +116,8 @@ body {
   transform: translateY(-50%);
 }
 
-.sidebar.open li .tooltip, .sidebar.opendark-mode li .tooltip {
+.sidebar.open li .tooltip,
+.sidebar.opendark-mode li .tooltip {
   display: none;
 }
 
@@ -134,15 +132,14 @@ body {
   border-radius: 5px;
   background-color: lightblue;
   transition: all 0.5s ease;
-  
 }
 
 .sidebar input::placeholder {
   color: grey;
-  
 }
 
-.sidebar.open input, .sidebar.opendark-mode input {
+.sidebar.open input,
+.sidebar.opendark-mode input {
   width: 100%;
   padding: 0 20px 0 50px;
 }
@@ -153,7 +150,7 @@ body {
   width: 100%;
   align-items: center;
   text-decoration: none;
-  background-color: #007BFF;
+  background-color: #007bff;
   position: relative;
   transition: all 0.5s ease;
   z-index: 12;
@@ -194,7 +191,8 @@ body {
   color: black;
 }
 
-.sidebar.open li a .link_name ,.sidebar.opendark-mode li a .link_name{
+.sidebar.open li a .link_name,
+.sidebar.opendark-mode li a .link_name {
   opacity: 1;
   pointer-events: auto;
 }
@@ -215,10 +213,10 @@ body {
   padding: 10px 1px;
   overflow: hidden;
   transition: all 0.5s ease;
-  
 }
 
-.sidebar.open li.profile, .sidebar.opendark-mode li.profile  {
+.sidebar.open li.profile,
+.sidebar.opendark-mode li.profile {
   width: 250px;
 }
 
@@ -226,7 +224,6 @@ body {
   display: flex;
   align-items: center;
   flex-wrap: nowrap;
-  
 }
 
 .sidebar li.profile .name,
@@ -245,7 +242,7 @@ body {
   position: absolute;
   right: 0;
   transform: translateY(-50%);
-  background-color: #007BFF;
+  background-color: #007bff;
   width: 100%;
   height: 60px;
   line-height: 60px;
@@ -255,7 +252,8 @@ body {
   top: 60%;
 }
 
-.sidebar .profile #log_out:hover, .sidebar.dark-mode .profile #log_out:hover{
+.sidebar .profile #log_out:hover,
+.sidebar.dark-mode .profile #log_out:hover {
   background-color: white;
   color: black;
   border: 2px solid black;
@@ -278,12 +276,14 @@ body {
   margin-top: 10px;
 }
 
-.sidebar.open .profile #log_out, .sidebar.opendark-mode .profile #log_out{
+.sidebar.open .profile #log_out,
+.sidebar.opendark-mode .profile #log_out {
   width: 50px;
   background: none;
 }
 
-.sidebar.open .profile #log_out:hover, .sidebar.opendark-mode .profile #log_out:hover {
+.sidebar.open .profile #log_out:hover,
+.sidebar.opendark-mode .profile #log_out:hover {
   background-color: white;
   color: black;
   border: 2px solid black;
@@ -299,7 +299,6 @@ body {
   width: calc(100% - 78px);
   transition: all 0.5s ease;
   z-index: 2;
-
 }
 
 .home-section .text {
@@ -307,13 +306,12 @@ body {
   font-size: 25px;
   font-weight: 500;
   margin: 18px;
-  
 }
 
-.sidebar.open ~ .home-section ,.sidebar.opendark-mode ~ .home-section{
+.sidebar.open ~ .home-section,
+.sidebar.opendark-mode ~ .home-section {
   left: 250px;
   width: calc(100% - 250px);
-  
 }
 
 .toggleText {
@@ -381,18 +379,18 @@ body {
   width: 26px;
 }
 
-
 /* SIDEBAR DARK MODE STLYES */
 
-.sidebar.dark-mode,.sidebar.opendark-mode{
+.sidebar.dark-mode,
+.sidebar.opendark-mode {
   background-color: black;
 }
 
-.sidebar.opendark-mode li a, .sidebar.dark-mode li a{
+.sidebar.opendark-mode li a,
+.sidebar.dark-mode li a {
   background-color: black;
 }
 
-
-.sidebar.dark-mode .profile #log_out{
+.sidebar.dark-mode .profile #log_out {
   background-color: black;
 }
