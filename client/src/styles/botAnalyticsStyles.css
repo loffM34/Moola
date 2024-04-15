@@ -3,8 +3,8 @@
   margin: 10px 10px 0px;
 }
 
-.botAnalytics-bots{
-  width:100%;
+.botAnalytics-bots {
+  width: 100%;
 }
 
 .botAnalytics-bots .bots {
@@ -43,9 +43,49 @@
   font-size: large;
 }
 
+.stockData {
+  background-color: blue;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  left: 25%;
+  margin-top: 5%;
+  width: 300px;
+}
 
-.botAnalytics-bots .stockData{
-  background-color: green;
-  height:100px;
+.stockDataContainer {
+  display: flex;
+  margin-left: 15%;
+}
+
+.stockDataContainer p {
+  margin-left: 10px;
+}
+
+.stockPrice {
+  font-size: x-large;
+}
+
+.stockDollarChange,
+.stockPercentChange {
+  font-size: medium;
+  margin-top: 5px;
+}
+
+.botAnalytics-bots .stockData {
+  height: 100px;
+  display: block;
   position: relative;
 }
+
+/* .failLoad {
+  display: none;
+} */
+
+/* .stockData.errLoading .failLoad {
+  display: block;
+}
+
+.stockData.errLoading .stockPrice {
+  display: none;
+} */
