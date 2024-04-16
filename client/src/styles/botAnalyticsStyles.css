@@ -9,6 +9,7 @@
 
 .botAnalytics-bots .bots {
   width: 80%;
+  max-width: 800px;
   position: relative;
   display: flex;
   justify-content: flex-end;
@@ -86,7 +87,7 @@
   opacity: 1;
 }
 
-.stockSymbol p {
+.botAnalytics-bots .stockSymbol p {
   position: relative;
   top:25%;
   text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5); /* Text shadow for 3D effect */

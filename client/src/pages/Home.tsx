@@ -1,7 +1,8 @@
 import Header from "../components/Header";
 import ParticlesComponent from "../components/Particles";
 import "../styles/homePageStyles.css";
-function Home() {
+
+function Home() { 
   return (
     <>
       <ParticlesComponent />

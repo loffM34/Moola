@@ -52,13 +52,7 @@ function Sidebar({ darkMode, toggleDarkMode }: SidebarProps) {
             </a>
             <span className="tooltip">Bot Analytics</span>
           </li>
-          <li>
-            <a href="#">
-              <i className="bi bi-bank"></i>{" "}
-              <span className="link_name"> Stock Info</span>
-            </a>
-            <span className="tooltip">Stock Info</span>
-          </li>
+
           <p className="toggleText">Toggle Display</p>
           <div className="displayToggle">
             <input

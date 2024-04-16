@@ -6,8 +6,6 @@ const cheerio = require("cheerio");
 router.post("/", async (req, res) => {
   var stockData = [];
   const userBots = req.body.userBots;
-  console.log("USER BOTS SYMBOLS", userBots[0].stockSymbol);
-  console.log("https://finance.yahoo.com/quote/" + userBots[0].stockSymbol);
 
   for (var i = 0; i < userBots.length; i++) {
     try {
@@ -24,10 +22,6 @@ router.post("/", async (req, res) => {
       const stockDollarChange = $("fin-streamer").eq(19).text(); // Example selector
       const stockPercentChange = $("fin-streamer").eq(20).text(); // Example selector
 
-      // Output the stock price
-      console.log("Stock Price:", stockPrice);
-      console.log("Stock Dollar Change:", stockDollarChange);
-      console.log("Stock Percent Change:", stockPercentChange);
 
       stockData.push({
         stockSymbol: userBots[i].stockSymbol,
@@ -39,8 +33,6 @@ router.post("/", async (req, res) => {
       console.error("Error:", error);
     }
   }
-
-  console.log("STOCK DATA ", stockData);
 
   res.json(stockData);
 });

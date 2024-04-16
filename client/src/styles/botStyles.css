@@ -66,6 +66,11 @@
   transition-duration: 0.5s;
 }
 
+.bots button:hover{
+  transition: 0.3s ease;
+  transform: scale(1.5);
+}
+
 
 
 /* BOTs DARK MODE STYLES */
@@ -76,6 +81,13 @@
   color: white;
   text-shadow: 1px 1px 1px black;
   background:linear-gradient(to bottom, #1a1a1a, #333333);
+}
+
+.bots.dark-mode button{
+  color:white
+}
+.bots.dark-mode button:hover{
+  color:black;
 }
 
 
