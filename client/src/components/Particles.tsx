@@ -2,7 +2,6 @@ import Particles from "react-tsparticles";
 import { loadSlim } from "tsparticles-slim"; //loads tsparticles slim
 //import { loadFull } from "tsparticles"; // loads ts particles
 import { useCallback, useMemo } from "react";
-import "../styles/particlesStyles.css";
 
 const ParticlesComponent = () => {
   const options = useMemo(() => {

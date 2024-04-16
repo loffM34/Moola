@@ -9,10 +9,14 @@
 
 .botAnalytics-bots .bots {
   width: 80%;
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
   transition: 0.5s ease;
   margin-top: 20px;
   left: 5px;
 }
+
 
 .botAnalytics-bots .bots:hover {
   transition: 0.5s ease;
@@ -23,44 +27,115 @@
   display: none;
 }
 
-.botAnalytics-bots .stockSymbol {
-  background-color: red;
-  width: auto;
-  height: auto;
-  position: absolute;
-  top: 50%;
-  left: 10px;
+.botAnalytics-bots .botContentContainer{
+  width: 100%;
+  margin:0;
+  padding: 0%;
+  height:auto;
+  overflow-x: auto;
+  overflow-y: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: row;
 }
 
-.botAnalytics-bots .botName {
-  background-color: aquamarine;
-  width: 100px;
-  width: auto;
-  height: auto;
+.botAnalytics-bots .stockSymbol {
+  background-color: #498dcd;
+  border-radius: 200px;
+  width: 150px;
+  height: 150px;
   position: absolute;
-  top: 5px;
-  left: 10px;
+  top:35px;
+  left:10px;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5); /* Box shadow for the circle */
+}
+.botAnalytics-bots  .stockLink a{
+  text-decoration: none;
+  color:white;
+  transition: 0.5s ease;
+  cursor: pointer;
+  pointer-events: auto;
+
+}
+
+.stockSymbol:hover{
+  transition: 0.5s ease;
+  transform: scale(1.05);
+}
+
+.tooltiptext {
+  visibility: hidden;
+  width: 50px;
+  height:50px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  font-size: small;
+  border-radius: 200px;
+  padding: 5px;
+  position: absolute;
+  z-index: 1;
+  bottom: 65%;
+  left: 100%;
+  margin-left: -60px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.stockSymbol:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+
+.stockSymbol p {
+  position: relative;
+  top:25%;
+  text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5); /* Text shadow for 3D effect */
+  }
+
+.botAnalytics-bots .botName {
+  width: 100px;
+  width: 100%;
+  height: 30px;
+  right: 0px;
+  position: absolute;
   font-size: large;
+  border-radius: 20px 20px 0px 0px;
+  background:linear-gradient(135deg, #a4c7ea,#b6d0ea);
+  
+}
+
+
+.botAnalytics-bots .botName p{
+  margin-top: 2px;
 }
 
 .stockData {
-  background-color: blue;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  left: 25%;
-  margin-top: 5%;
-  width: 300px;
+  width: 200px;
+  position: absolute;
+  left:150px;
+  top:65px;
 }
 
 .stockDataContainer {
   display: flex;
-  margin-left: 15%;
+  margin-left: 25%;
 }
 
 .stockDataContainer p {
-  margin-left: 10px;
+  margin: 0;
+  margin-right: 5px;
+  padding: 0;
+
 }
+
+/* stock data container changes green with positive and red with negative */
+.stockDataContainer.positive{
+  color:green;
+}
+.stockDataContainer.negative{
+  color:darkred;
+}
+
 
 .stockPrice {
   font-size: x-large;
@@ -78,14 +153,51 @@
   position: relative;
 }
 
-/* .failLoad {
-  display: none;
-} */
 
-/* .stockData.errLoading .failLoad {
-  display: block;
+.botAnalytics-bots .transactionList{
+  width: 200px;
+  position: absolute;
+  left:220px;
+  top:0;
+}
+.botAnalytics-bots .transactionList ul{
+  position: absolute;
+  right:-20px;
+  display:flex;
+ }
+.botAnalytics-bots .transactionList li{
+  list-style:none;
+ }
+
+/* aniamtion for loading content */
+
+@keyframes pulse {
+  0% {
+    opacity: 0.5;
+    transform: scale(0.9);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0.5;
+    transform: scale(0.9);
+  }
 }
 
-.stockData.errLoading .stockPrice {
-  display: none;
-} */
+.botAnalytics-bots .stockData.errLoading p {
+  animation: pulse 1.5s 3;
+}
+
+
+/* bot anayltics darkMode stuff */ 
+
+.botAnalytics-bots .dark-mode .botName{
+  background:linear-gradient(to bottom, #1a1a1a, #333333);
+
+}
+
+.botAnalytics-bots .dark-mode .stockSymbol{
+  background-color: rgb(28, 38, 50);
+}

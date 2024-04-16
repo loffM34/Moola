@@ -7,6 +7,8 @@ from datetime import datetime
 from alpaca_trade_api import REST
 from timedelta import Timedelta
 from finbert_utils import estimate_sentiment
+import sys
+
 
 
 ## Alpaca API INFO
@@ -28,6 +30,7 @@ class MLTrader(Strategy):
         print("LOGGING THE INITIALIZATION STATE")
         #symbol of stock choosen
         self.symbol = symbol
+        print("STOCK SYMBOL", self.symbol)
         #How often bot makes a trade
         # self.sleeptime = "24H"
         
@@ -111,6 +114,18 @@ class MLTrader(Strategy):
                 else:
                     print("HELD")
 
+
+#Params for the trading strategy
+bot_name = sys.argv[1]
+alpaca_key = sys.argv[2]
+alpaca_secret = sys.argv[3]
+alpaca_endpoint = sys.argv[4]
+stock_symbol = sys.argv[5]
+trading_strat = sys.argv[6]
+start_cash = sys.argv[7]
+risk_percentage = sys.argv[8]
+trade_profit_order = sys.argv[9]
+
 # Get current date
 current_date = datetime.today()
 
@@ -124,7 +139,7 @@ end_date = datetime(2023, 12, 25)
 
 broker = Alpaca(ALPACA_CREDS)
 strategy = MLTrader(name='mlstrat', broker = broker,
-                    parameters={"symbol":"SPY", 
+                    parameters={"symbol":stock_symbol, 
                                 "cash_at_risk":0.5})
 
 #BACKTESTING 
@@ -136,11 +151,18 @@ strategy = MLTrader(name='mlstrat', broker = broker,
 # )
 
 
-#Run bot Live
 
-trader = Trader()
-trader.add_strategy(strategy)
-trader.run_all()
+
+# Check if the script is called with the correct number of arguments
+if len(sys.argv) != 10:
+    print("Incorrect Number of arguments passed")
+    sys.exit(1)
+else:
+    trader = Trader()
+    trader.add_strategy(strategy)
+    trader.run_all()
+
+
 
 # trader.stop_all()
 # strategy.initialize()

@@ -28,6 +28,8 @@ function Bots({
     }
   }
 
+  const botTransactions = ["HOLD","HOLD","BUY","SELL","BUY"]
+
   return (
     <>
       <div
@@ -35,24 +37,45 @@ function Bots({
           openEditBotModal ? " modalOpen" : ""
         }`}
       >
-        <div className="stockSymbol">
-          <p>{stockSymbol}</p>
-        </div>
         <div className="botName">
-          <p>{botName}</p>
+          <p>{botName}:</p>
         </div>
-        <div
-          className={`stockData ${
-            stockPrice != "Loading..." ? "" : "errLoading"
-          }`}
-        >
-          <h3>Stock Data</h3>
-          <div className="stockDataContainer">
-          <p className="stockPrice"> {stockPrice}</p>
-          <p className="stockDollarChange"> {stockDollarChange}</p>
-          <p className="stockPercentChange"> {stockPercentChange}</p>
+        <div className="botContentContainer">
+          <div className="stockLink">
+            <a
+              href={"https://finance.yahoo.com/quote/" + stockSymbol}
+              target="_blank"
+            >
+              <div className="stockSymbol">
+                <p>{stockSymbol}</p>
+                <span className="tooltiptext">More Info?</span>
+              </div>
+            </a>
           </div>
-          
+
+          <div
+            className={`stockData ${
+              stockPrice != "Loading..." ? "" : "errLoading"
+            }`}
+          >
+            <p className="stockPrice"> {stockPrice}</p>
+            <div
+              className={`stockDataContainer ${
+                stockDollarChange > 0 ? "positive" : "negative"
+              }`}
+            >
+              <p className="stockDollarChange"> {stockDollarChange} </p>
+              <p className="stockPercentChange">{stockPercentChange}</p>
+            </div>
+            <div className="transactionList">
+              <h3>Transaction History</h3>
+              <ul>
+                {botTransactions.map((transaction,index)=>(
+                  <li key={index}>[{transaction}]</li>
+                ))}
+              </ul>
+            </div>
+          </div>
         </div>
         <div className="botButtons">
           <button
