@@ -1,12 +1,28 @@
-.companyName {
-  color: rgb(48, 48, 174);
-  font-size: 100px;
-  z-index: 2;
-  position: relative;
-  margin: auto;
-  margin-top: 25%;
+.homeContent {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  text-align: center;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  margin: auto;
+}
+
+.logo {
+  width: 200px;
+  height: auto;
+  display: flex;
+  position: relative;
+}
+
+.companyName {
+  display: flex;
+  color: transparent;
+  background-image: linear-gradient(#00d8b2, #0051ff);
+  background-clip: text;
+  font-size: 100px;
+  font-weight: 600;
+  position: relative;
 }

@@ -22,7 +22,8 @@ const inputContainerStyles: React.CSSProperties = {
 };
 
 const forgotPassStyles: React.CSSProperties = {
-  paddingRight: "260px",
+  marginRight: "260px",
+  whiteSpace: "nowrap"
 };
 
 function LoginForm() {

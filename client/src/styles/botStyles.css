@@ -10,14 +10,14 @@
   transition: transform 0.3 ease;
   font-weight: 10px;
   background: linear-gradient(135deg, #dcdcdc, #ffffff);
-  color: #0B1C3D;
+  color: #0b1c3d;
 }
 
-.bots .stockData{
-  display:none;
+.bots .stockData {
+  display: none;
 }
 
-.bots .stockLink a{
+.bots .stockLink a {
   text-decoration: none;
   color: inherit;
   cursor: default;
@@ -58,6 +58,7 @@
   background-color: transparent;
   border: none;
   margin-left: 10px;
+  color: black;
 }
 
 .openEditBotModal :hover {
@@ -66,12 +67,11 @@
   transition-duration: 0.5s;
 }
 
-.bots button:hover{
+.bots .deleteBotBtn:hover,
+.openEditBotModal:hover {
   transition: 0.3s ease;
   transform: scale(1.5);
 }
-
-
 
 /* BOTs DARK MODE STYLES */
 
@@ -80,22 +80,20 @@
   transition: transform 0.3 ease;
   color: white;
   text-shadow: 1px 1px 1px black;
-  background:linear-gradient(to bottom, #1a1a1a, #333333);
+  background: linear-gradient(to bottom, #1a1a1a, #333333);
 }
 
-.bots.dark-mode button{
-  color:white
+.bots.dark-mode .deleteBotBtn,
+.bots.dark-mode .openEditBotModal {
+  color: white;
 }
-.bots.dark-mode button:hover{
-  color:black;
+.bots.dark-mode .deleteBotBtn:hover,
+.bots.dark-mode .openEditBotModal:hover {
+  color: black;
 }
-
-
-
 
 .bots.dark-mode:hover:not(.modalOpen) {
   transition: 0.3 ease;
   transform: scale(1.05);
   box-shadow: 5px 10px lightgrey;
 }
-

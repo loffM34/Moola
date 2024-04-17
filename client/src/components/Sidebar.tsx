@@ -3,6 +3,7 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getAuthContext, clearAuthContext } from "../scripts/authContext";
+import SecretModal from "./SecretModal";
 
 interface SidebarProps {
   darkMode: boolean;
@@ -12,6 +13,8 @@ interface SidebarProps {
 function Sidebar({ darkMode, toggleDarkMode }: SidebarProps) {
   const history = useNavigate();
   const user = getAuthContext();
+
+  const [openSecretModal, setOpenSecretModal] = useState(false);
 
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   // const [darkMode, setDarkMode] = useState(false);
@@ -59,13 +62,24 @@ function Sidebar({ darkMode, toggleDarkMode }: SidebarProps) {
               type="checkbox"
               id="darkmode-toggle"
               onChange={toggleDarkMode}
-              checked={darkMode}
+              // checked={darkMode}
             />
             <label id="toggleLabel" htmlFor="darkmode-toggle"></label>
           </div>
           <li className="profile">
             <div className="profile_details">
-              <div className="profilePicture"></div>
+              <button
+                className="secretButton"
+                onClick={() => {
+                  toggleSidebar();
+                  setOpenSecretModal(true);
+                }}
+              >
+                <div className="profilePicture"></div>
+              </button>
+              {openSecretModal && (
+                <SecretModal closeModal={setOpenSecretModal} />
+              )}
               <div className="profile_content">
                 <div className="name">
                   {user.firstName} {user.lastName}

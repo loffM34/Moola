@@ -274,6 +274,23 @@ body {
   margin: 10px;
   margin-left: 50px;
   margin-top: 10px;
+  display: none;
+}
+
+.secretButton {
+  width: 30px;
+  height: 30px;
+  font-size: 100px;
+  background-color: white;
+  border-radius: 200px;
+  align-items: center;
+  border: none;
+  background-image: url("./images/profileImage.jpg");
+  background-size: cover;
+  padding: 10px;
+  margin: 10px;
+  margin-left: 50px;
+  margin-top: 10px;
 }
 
 .sidebar.open .profile #log_out,

@@ -2,13 +2,12 @@ import Particles from "react-tsparticles";
 import { loadSlim } from "tsparticles-slim"; //loads tsparticles slim
 //import { loadFull } from "tsparticles"; // loads ts particles
 import { useCallback, useMemo } from "react";
-
 const ParticlesComponent = () => {
   const options = useMemo(() => {
     //empty options will load default options settings
     return {
       background: {
-        color: "#0000", //canvas background color
+        color: "#020d29", //canvas background color
       },
       fullScreen: {
         enable: true, //particles will fill screen
