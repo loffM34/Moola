@@ -10,9 +10,9 @@ from finbert_utils import estimate_sentiment
 
 
 ## Alpaca API INFO
-API_KEY = "PKDGY2P4PWQ4Z5SE1QMI"
-API_SECRET = "zc1yxtLN4xmhs4ZFkcgKwdlxJvje2bde68MOBecy"
-BASE_URL = "https://paper-api.alpaca.markets"
+API_KEY = "PKC0NC0HB3W627YY4FHE"
+API_SECRET = "4i0R4xljmbobxCjrDatXVZs04TD4p1GONdefzAFT"
+BASE_URL = "https://paper-api.alpaca.markets/v2"
 
 ALPACA_CREDS = {
     "API_KEY": API_KEY,
@@ -20,7 +20,10 @@ ALPACA_CREDS = {
     "PAPER": True
 }
 
+
+
 class MLTrader(Strategy):
+
     #LIFE Cycle Methods
 
     #Initialize method runs once
@@ -28,7 +31,7 @@ class MLTrader(Strategy):
         #symbol of stock choosen
         self.symbol = symbol
         #How often bot makes a trade
-        self.sleeptime = "2H"
+        self.sleeptime = "24H"
         #Last trade made by bot (buy,sell,hold)
         self.last_trade = None
         #set value of percentage of cash we are willing to risk
@@ -64,13 +67,17 @@ class MLTrader(Strategy):
         
     #on trading runs every time we get new data
     def on_trading_iteration(self):
+        held = 0
+        bought = 0
+        sold = 0
+        
         cash, last_price, quantity = self.position_sizing()
         probablitiy, sentiment = self.get_sentiment()
 
         #if we have more cash than the stock costs or if 
         if cash > last_price:
                 #if sentiment states that stock is going up and there is a high probablitiy of it 
-                if sentiment == "positive" and probablitiy > 0.999:
+                if sentiment == "positive" and probablitiy > 0.99:
                     #
                     if self.last_trade == "sell":
                          self.sell_all()
@@ -84,11 +91,13 @@ class MLTrader(Strategy):
                             stop_loss_price = last_price*0.95
                     )
                     #submits order through alpaca
+                    bought = bought + 1
+                    print("BUY count ", bought)
                     self.submit_order(order)
                     self.last_trade = "buy"  
 
                                     #if sentiment states that stock is going up and there is a high probablitiy of it 
-                elif sentiment == "negative" and probablitiy > 0.999:
+                elif sentiment == "negative" and probablitiy > 0.99:
                     #
                     if self.last_trade == "buy":
                          self.sell_all()
@@ -102,8 +111,13 @@ class MLTrader(Strategy):
                         stop_loss_price = last_price*1.05
                     )
                     #submits order through alpaca
+                    sold = sold + 1
+                    print("SELL count ", sold)
                     self.submit_order(order)
                     self.last_trade = "sell"  
+                else:
+                     held = held + 1
+                     print("HELD count ", held)
 
 # Get current date
 current_date = datetime.today()
@@ -113,8 +127,8 @@ year = current_date.year
 month = current_date.month
 day = current_date.day
 
-start_date = datetime(2016, 5, 20)
-end_date = datetime(2016, 6, 20)
+start_date = datetime(2023, 5, 20)
+end_date = datetime(2024, 4, 3)
 
 broker = Alpaca(ALPACA_CREDS)
 strategy = MLTrader(name='mlstrat', broker = broker,

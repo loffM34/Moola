@@ -41,7 +41,7 @@ const ParticlesComponent = () => {
           distance: 200, //linking distance for particles
         },
         number: {
-          value: 50,
+          value: 25,
         },
         move: {
           enable: true, //enabling this will make particles move in canvas

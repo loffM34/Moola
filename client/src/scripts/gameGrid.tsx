@@ -1,237 +1,81 @@
-//start game
-function startGame() {
-  gameCanvas.start();
+import React, { useEffect, useState } from "react";
 
-  apple = new createApple();
-  player = new createPlayer(x, y);
-}
+const SnakeGame = () => {
+  const [playerLength, setPlayerLength] = useState(1);
+  const [direction, setDirection] = useState(null);
+  const [frameCounter, setFrameCounter] = useState(0);
+  const [isDead, setIsDead] = useState(true);
 
-//update canvas
-var interval = setInterval(updateCanvas, 20);
+  useEffect(() => {
+    let interval;
 
-//player vars
-var width = 20;
-var height = 20;
-var speed = 20;
-var playerLength = 1;
-var framesPerMove = 5;
+    const canvas = document.createElement("canvas");
+    const context = canvas.getContext("2d");
+    const width = 20;
+    const height = 20;
+    const speed = 20;
+    const framesPerMove = 5;
 
-var frameCounter = 0;
+    const snakeArray = [[canvas.width / 2, canvas.height / 2]];
 
-var direction;
+    const startGame = () => {
+      canvas.width = 600;
+      canvas.height = 400;
+      document.body.appendChild(canvas);
+      interval = setInterval(updateCanvas, 20);
+    };
 
-var isDead = true;
+    const updateCanvas = () => {
+      setFrameCounter((prevCounter) => prevCounter + 1);
 
-//player array
-//var snakeArray = [player];
+      if (frameCounter >= framesPerMove) {
+        updatePlayerArray();
+        draw();
+        movePlayer();
+        setFrameCounter(0);
+      } else {
+        draw();
+      }
 
-//event listeners
-document.addEventListener("keydown", function (event) {
-  if (
-    ((playerLength == 1 || direction != "down") && event.key == "ArrowUp") ||
-    event.key == "w"
-  ) {
-    direction = "up";
-  }
-  if (
-    ((playerLength == 1 || direction != "up") && event.key == "ArrowDown") ||
-    event.key == "s"
-  ) {
-    direction = "down";
-  }
-  if (
-    ((playerLength == 1 || direction != "right") && event.key == "ArrowLeft") ||
-    event.key == "a"
-  ) {
-    direction = "left";
-  }
-  if (
-    ((playerLength == 1 || direction != "left") && event.key == "ArrowRight") ||
-    event.key == "d"
-  ) {
-    direction = "right";
-  }
-});
+      deathCheck();
+    };
 
-var gameCanvas = {
-  canvas: document.createElement("canvas"),
-  start: function () {
-    this.canvas.width = 600;
-    this.canvas.height = 400;
-    this.context = this.canvas.getContext("2d");
-    x = this.canvas.width / 2;
-    y = this.canvas.height / 2;
-    document.body.appendChild(this.canvas);
-  },
+    const draw = () => {
+      context.clearRect(0, 0, canvas.width, canvas.height);
+
+      for (let i = 0; i < snakeArray.length; i++) {
+        context.fillStyle = "green";
+        context.fillRect(snakeArray[i][0], snakeArray[i][1], width, height);
+      }
+    };
+
+    const updatePlayerArray = () => {
+      // Update player array logic here if needed
+    };
+
+    const movePlayer = () => {
+      // Move player logic here based on direction state
+    };
+
+    const deathCheck = () => {
+      // Death check logic here
+    };
+
+    const handleKeyDown = (event) => {
+      // Handle key down event to update direction state
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+
+    startGame();
+
+    return () => {
+      clearInterval(interval);
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [frameCounter]); // Re-run effect whenever frameCounter changes
+
+  return null; // Since this is a canvas-based game, we don't need to render anything directly from the component
 };
 
-function updateCanvas() {
-  frameCounter++;
-
-  if (frameCounter >= framesPerMove) {
-    player.updateArray();
-    player.draw();
-
-    apple.draw();
-    player.move(direction);
-    moveApple();
-
-    frameCounter = 0;
-  } else {
-    player.draw();
-    apple.draw();
-  }
-
-  deathCheck();
-}
-
-function createPlayer(x, y) {
-  this.x = x;
-  this.y = y;
-  var previousX = 0;
-  var previousY = 0;
-  var snakeArray = [[this.x, this.y]];
-
-  this.draw = function () {
-    var ctx = gameCanvas.context;
-    ctx.clearRect(0, 0, gameCanvas.canvas.width, gameCanvas.canvas.height);
-
-    for (var i = 0; i < snakeArray.length; i++) {
-      ctx.fillStyle = "green";
-      ctx.fillRect(snakeArray[i][0], snakeArray[i][1], width, height);
-      ctx.fillStyle = "blue";
-      switch (direction) {
-        case "up":
-          ctx.fillRect(this.x + 12, this.y + 3, 5, 5);
-          ctx.fillRect(this.x + 3, this.y + 3, 5, 5);
-          break;
-
-        case "down":
-          ctx.fillRect(this.x + 12, this.y + 13, 5, 5);
-          ctx.fillRect(this.x + 3, this.y + 13, 5, 5);
-          break;
-
-        case "left":
-          ctx.fillRect(this.x + 3, this.y + 12, 5, 5);
-          ctx.fillRect(this.x + 3, this.y + 3, 5, 5);
-          break;
-
-        case "right":
-          ctx.fillRect(this.x + 13, this.y + 12, 5, 5);
-          ctx.fillRect(this.x + 13, this.y + 3, 5, 5);
-          break;
-        default:
-          ctx.fillRect(this.x + 13, this.y + 12, 5, 5);
-          ctx.fillRect(this.x + 13, this.y + 3, 5, 5);
-      }
-    }
-  };
-
-  this.grow = function () {
-    playerLength += 1;
-    snakeArray.push([previousX, previousY]);
-    updateScore();
-  };
-
-  this.move = function (keyPressed) {
-    previousX = snakeArray[snakeArray.length - 1][0];
-    previousY = snakeArray[snakeArray.length - 1][1];
-
-    switch (keyPressed) {
-      case "up":
-        if (player.y > 0) {
-          this.y -= speed;
-          for (var i = snakeArray.length - 1; i >= 1; i--) {
-            snakeArray[i][0] = snakeArray[i - 1][0];
-            snakeArray[i][1] = snakeArray[i - 1][1];
-          }
-          snakeArray[0] = [this.x, this.y];
-        }
-        break;
-
-      case "down":
-        if (player.y < gameCanvas.canvas.height - height) {
-          this.y += speed;
-          for (var i = snakeArray.length - 1; i >= 1; i--) {
-            snakeArray[i][0] = snakeArray[i - 1][0];
-            snakeArray[i][1] = snakeArray[i - 1][1];
-          }
-          snakeArray[0] = [this.x, this.y];
-        }
-        break;
-
-      case "left":
-        if (player.x > 0) {
-          this.x -= speed;
-          for (var i = snakeArray.length - 1; i >= 1; i--) {
-            snakeArray[i][0] = snakeArray[i - 1][0];
-            snakeArray[i][1] = snakeArray[i - 1][1];
-          }
-          snakeArray[0] = [this.x, this.y];
-        }
-        break;
-
-      case "right":
-        if (player.x < gameCanvas.canvas.width - width) {
-          this.x += speed;
-          for (var i = snakeArray.length - 1; i >= 1; i--) {
-            snakeArray[i][0] = snakeArray[i - 1][0];
-            snakeArray[i][1] = snakeArray[i - 1][1];
-          }
-          snakeArray[0] = [this.x, this.y];
-        }
-        break;
-    }
-  };
-
-  this.updateArray = function () {};
-}
-// function addSnakeBlock(x,y){
-//         this.x = x;
-//         this.y = y;
-//         var previousX;
-//         var previousY;
-
-// }
-
-function createApple() {
-  this.width = width;
-  this.height = height;
-  this.x = Math.floor(Math.random() * 30) * 20;
-  this.y = Math.floor(Math.random() * 20) * 20;
-
-  this.draw = function () {
-    var ctx = gameCanvas.context;
-    ctx.fillStyle = "red";
-    ctx.fillRect(this.x, this.y, this.width, this.height);
-  };
-}
-
-function moveApple() {
-  //move apple if apple and player are in same spot
-  if (player.x == apple.x && player.y == apple.y) {
-    apple.x = Math.floor(Math.random() * 30) * 20;
-    apple.y = Math.floor(Math.random() * 20) * 20;
-
-    player.grow();
-  }
-}
-
-function deathCheck() {
-  if (
-    player.x >= gameCanvas.canvas.width - width ||
-    player.x <= 0 ||
-    player.y + height >= gameCanvas.canvas.height ||
-    player.y <= 0
-  ) {
-    // clearInterval(interval);
-  }
-}
-
-// Update score function
-function updateScore() {
-  console.log(playerLength);
-  document.getElementById("scoreValue").textContent = playerLength;
-}
-
-window.onload = startGame;
+export default SnakeGame;

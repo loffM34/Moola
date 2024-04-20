@@ -38,12 +38,6 @@ function Dashboard({ darkMode }) {
         <h1 className="greeting"> Welcome, {user.firstName} </h1>
       </div>
       <div className="body">
-        <button
-          className="openNewBotModal"
-          onClick={() => {
-            setOpenModal(true);
-          }}
-        ></button>
         {openNewBotModal && <NewBotModal closeModal={setOpenModal} />}
 
         {/* dynamically display userBots array */}
@@ -59,6 +53,14 @@ function Dashboard({ darkMode }) {
               stockPercentChange={""}
             />
           ))}
+        <button
+          className="newBotContainer"
+          onClick={() => {
+            setOpenModal(true);
+          }}
+        >
+          <div className="openNewBotModal"></div>
+        </button>
       </div>
     </section>
   );

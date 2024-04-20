@@ -1,3 +1,8 @@
+@font-face {
+  font-family: 'Supera Gothic Extra Bold';
+  src: url('../styles/fonts/SuperaGothic-Bold.otf');
+}
+
 .homeContent {
   display: flex;
   flex-direction: column;
@@ -25,4 +30,5 @@
   font-size: 100px;
   font-weight: 600;
   position: relative;
+  user-select: none;
 }

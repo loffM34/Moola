@@ -33,6 +33,7 @@ body {
   display: flex;
   align-items: center;
   position: relative;
+  user-select: none;
 }
 
 .sidebar .logo_details .icon {
@@ -46,6 +47,9 @@ body {
   font-weight: 600;
   opacity: 0;
   transition: all 0.5s ease;
+  width:150px;
+  
+  
 }
 
 .sidebar.open .logo_details .icon,
@@ -69,6 +73,11 @@ body {
 .sidebar.open .logo_details #btn,
 .sidebar.opendark-mode .logo_details #btn {
   text-align: right;
+}
+
+.sidebarLogo{
+  width:50px;
+  height:auto;  
 }
 
 .sidebar i {
@@ -382,7 +391,7 @@ body {
   visibility: hidden;
 }
 
-#darkmode-toggle::checked + #toggleLabel {
+#darkmode-toggle:checked + #toggleLabel {
   background: #242424;
 }
 
@@ -411,3 +420,4 @@ body {
 .sidebar.dark-mode .profile #log_out {
   background-color: black;
 }
+

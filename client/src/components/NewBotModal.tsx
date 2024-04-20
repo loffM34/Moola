@@ -254,37 +254,37 @@ function NewBotModal({ closeModal }) {
                     !tradeProfitOrder
                   ) {
                     alert("Please fill in all the fields");
-                  }
-                  if (
-                    !validSymbol ||
-                    !validStart ||
-                    !validRisk ||
-                    !validProfitOrder
-                  ) {
-                    
-                    alert("Invalid Data entered. Try again.");
                   } else {
-                    const response = await createNewBot(
-                      userEmail,
-                      botName.trim(),
-                      alpacaEndpoint,
-                      alpacaKey,
-                      alpacaSecret,
-                      stockSymbol,
-                      tradingStrategy,
-                      startingAmount,
-                      cashRiskPercentage,
-                      tradeProfitOrder
-                    );
-
-                    console.log("response", response.status);
-                    if (response.status === "name taken") {
-                      alert("Bot name already taken for this user");
-                      return;
+                    if (
+                      !validSymbol ||
+                      !validStart ||
+                      !validRisk ||
+                      !validProfitOrder
+                    ) {
+                      alert("Invalid Data entered. Try again.");
                     } else {
-                      console.log("made  it here");
-                      closeModal(false);
-                      window.location.reload();
+                      const response = await createNewBot(
+                        userEmail,
+                        botName.trim(),
+                        alpacaEndpoint,
+                        alpacaKey,
+                        alpacaSecret,
+                        stockSymbol,
+                        tradingStrategy,
+                        startingAmount,
+                        cashRiskPercentage,
+                        tradeProfitOrder
+                      );
+
+                      console.log("response", response.status);
+                      if (response.status === "name taken") {
+                        alert("Bot name already taken for this user");
+                        return;
+                      } else {
+                        console.log("made  it here");
+                        closeModal(false);
+                        window.location.reload();
+                      }
                     }
                   }
                 }}

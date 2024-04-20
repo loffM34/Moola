@@ -6,6 +6,8 @@
   left: 0;
   width: 100%;
   height: 100%;
+  overflow-y: auto;
+  scrollbar-width: thin;
 }
 
 /* USER DASH PAGE Dark mode Styles */
@@ -27,3 +29,5 @@
 .botAnalytics.dark-mode {
   background-color: grey;
 }
+
+

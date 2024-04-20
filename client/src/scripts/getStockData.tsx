@@ -1,4 +1,5 @@
 export const getStockData = async (userBots) => {
+  console.log("FETCHING SHIT")
   try {
     const response = await fetch("http://localhost:9000/GetStockDataApi", {
       method: "POST",
@@ -12,8 +13,6 @@ export const getStockData = async (userBots) => {
     });
 
     const data = await response.json();
-
-    console.log("DATA BRUH", data);
 
     return data;
   } catch (error) {

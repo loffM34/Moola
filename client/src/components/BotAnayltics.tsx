@@ -67,9 +67,7 @@ function BotAnalytics({ darkMode }) {
           {/* dynamically display userBots array */}
           {userBots.length > 0 &&
             userBots.map(
-              (bot, index) => (
-                console.log("STOCK PRICE", userBots),
-                console.log("INDEX", index),
+              (bot) => (
                 (
                   <Bots
                     key={bot.botName}

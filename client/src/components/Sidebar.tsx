@@ -1,5 +1,6 @@
 import "../styles/Sidebar.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
+import logo from "../styles/images/MoolaLogoCircle.png";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getAuthContext, clearAuthContext } from "../scripts/authContext";
@@ -37,7 +38,7 @@ function Sidebar({ darkMode, toggleDarkMode }: SidebarProps) {
         }`}
       >
         <div className="logo_details">
-          <div className="logo_name">Website name</div>
+          <div className="logo_name"><img src={logo} className="sidebarLogo"/> moola</div>
           <i className="bi bi-list" id="btn" onClick={toggleSidebar}></i>
         </div>
         <ul className="nav-list">

@@ -1,6 +1,6 @@
 import "../styles/secretModalStyles.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
-
+import SnakeGame from "../scripts/gameGrid";
 function SecretModal({ closeModal }) {
   return (
     <>
@@ -13,9 +13,8 @@ function SecretModal({ closeModal }) {
             <div id="score">
               Score: <span id="scoreValue">1</span>
             </div>
-            <canvas className="gameCanvas">
-
-            </canvas>
+              <SnakeGame />
+        
           </body>
         </div>
       </div>

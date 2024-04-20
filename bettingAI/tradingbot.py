@@ -10,8 +10,8 @@ from finbert_utils import estimate_sentiment
 
 
 ## Alpaca API INFO
-API_KEY = "PKGI10CQJC6VQQHHV52D"
-API_SECRET = "M4JXRPoamCkc8fo5HLfvNqBocAcj5zrbKbIauCwS"
+API_KEY = "PKC0NC0HB3W627YY4FHE"
+API_SECRET = "4i0R4xljmbobxCjrDatXVZs04TD4p1GONdefzAFT"
 BASE_URL = "https://paper-api.alpaca.markets/v2"
 
 ALPACA_CREDS = {
@@ -29,7 +29,7 @@ class MLTrader(Strategy):
         #symbol of stock choosen
         self.symbol = symbol
         #How often bot makes a trade
-        # self.sleeptime = "24H"
+        self.sleeptime = "24H"
         
         #Last trade made by bot (buy,sell,hold)
         self.last_trade = None

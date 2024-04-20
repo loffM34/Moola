@@ -11,22 +11,39 @@
   transition: transfrom 0.3s ease;
 }
 
+.newBotContainer{
+  border-radius: 25px;
+  min-height: 200px;
+  min-width: 200px;
+  margin: 10px;
+  text-align: center;
+  position: relative;
+  border: 2px solid black;
+  box-shadow: 5px 10px #8fb9e8;
+  transition: transform 0.3 ease;
+  font-weight: 10px;
+  background: linear-gradient(135deg, #dcdcdc, #ffffff);
+  color: #0b1c3d;
+}
+
+.newBotContainer:hover:not(.modalOpen) {
+  transition: 0.5s ease;
+  transform: scale(1.05);
+  box-shadow: 7px 12px #007bff;
+}
+
 .openNewBotModal {
   width: 100px;
   height: 100px;
   font-size: 100px;
-  background-color: white;
+  background: linear-gradient(135deg, #dcdcdc, #ffffff);
   border-radius: 200px;
   align-items: center;
   border: none;
   background-image: url("./images/createBotImage.png");
   background-size: cover;
-  padding: 10px;
   transition: transfrom 0.3s ease;
-}
-
-.openNewBotModal:hover {
-  transform: scale(1.03);
+  margin-left: 45px;
 }
 
 .body {
@@ -55,4 +72,19 @@
   background-color: grey;
   transition: transfrom 0.3s ease;
   color: white;
+}
+
+
+.home-section.dark-dashboard  .newBotContainer{
+  box-shadow: 5px 10px black;
+  transition: transform 0.3 ease;
+  color: white;
+  text-shadow: 1px 1px 1px black;
+  background: linear-gradient(to bottom, #1a1a1a, #333333);
+}
+
+.home-section.dark-dashboard  .newBotContainer:hover{
+  transition: 0.3 ease;
+  transform: scale(1.05);
+  box-shadow: 5px 10px lightgrey;
 }

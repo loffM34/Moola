@@ -1,11 +1,16 @@
+import logo from '../styles/images/MoolaLogoTransparent.png'
+import '../styles/headerStyles.css'
+
 function Header() {
   return (
     <>
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
         <div className="container-fluid">
+          <div className='companyContent'>
           <a className="navbar-brand" href="/Home">
-            Website Name
+            <img src={logo} className='headerLogo'/> moola
           </a>
+          </div>
           <button
             className="navbar-toggler"
             type="button"

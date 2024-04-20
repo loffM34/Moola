@@ -1,0 +1,19 @@
+@font-face {
+    font-family: 'Supera Gothic Extra Bold';
+    src: url('../styles/fonts/SuperaGothic-Bold.otf');
+  }
+
+.headerLogo{
+    margin: 0;
+    padding: 0;
+    width:50px;
+    height: auto;
+}
+
+
+
+.headerCompanyName{
+    margin: 0;
+    padding: 0;
+    margin-left:10px;
+}
