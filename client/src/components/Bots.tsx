@@ -10,6 +10,7 @@ const user = getAuthContext();
 function Bots({
   botName,
   stockSymbol,
+  transactionHistory,
   darkMode,
   stockPrice,
   stockDollarChange,
@@ -28,7 +29,8 @@ function Bots({
     }
   }
 
-  const botTransactions = ["HOLD","HOLD","BUY","SELL","BUY"]
+  console.log("trans hist", transactionHistory)
+  const botTransactions = transactionHistory;
 
   return (
     <>
@@ -69,11 +71,18 @@ function Bots({
             </div>
             <div className="transactionList">
               <h3>Transaction History</h3>
-              <ul>
-                {botTransactions.map((transaction,index)=>(
+              {transactionHistory != null &&(
+                <ul>
+                {botTransactions.slice(botTransactions.length-5,botTransactions.length).map((transaction,index)=>(
                   <li key={index}>[{transaction}]</li>
                 ))}
               </ul>
+              )}
+
+              {transactionHistory == null &&(
+                <ul className="nullTransactions">N/A</ul>
+              )}
+              
             </div>
           </div>
         </div>

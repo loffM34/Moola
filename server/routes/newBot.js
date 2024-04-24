@@ -45,6 +45,8 @@ router.post("/", async (req, res) => {
           startCash: start_cash,
           riskPercent: risk_percentage,
           tradeProfitOrder: trade_profit_order,
+          transactionHistory: [],
+          
         },
       },
     });

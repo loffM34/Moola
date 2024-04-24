@@ -77,10 +77,10 @@ class MLTrader(Strategy):
         #if we have more cash than the stock costs or if 
         if cash > last_price:
                 #if sentiment states that stock is going up and there is a high probablitiy of it 
-                if sentiment == "positive" and probablitiy > 0.99:
+                if sentiment == "positive" and probablitiy > 0.999:
                     #
-                    if self.last_trade == "sell":
-                         self.sell_all()
+                    # if self.last_trade == "sell":
+                    #      self.sell_all()
                     order = self.create_order(
                         self.symbol,
                         quantity,
@@ -97,10 +97,10 @@ class MLTrader(Strategy):
                     self.last_trade = "buy"  
 
                                     #if sentiment states that stock is going up and there is a high probablitiy of it 
-                elif sentiment == "negative" and probablitiy > 0.99:
+                elif sentiment == "negative" and probablitiy > 0.999:
                     #
-                    if self.last_trade == "buy":
-                         self.sell_all()
+                    # if self.last_trade == "buy":
+                    #      self.sell_all()
                     order = self.create_order(
                         self.symbol,
                         quantity,
@@ -127,7 +127,7 @@ year = current_date.year
 month = current_date.month
 day = current_date.day
 
-start_date = datetime(2023, 5, 20)
+start_date = datetime(2023, 4, 1)
 end_date = datetime(2024, 4, 3)
 
 broker = Alpaca(ALPACA_CREDS)

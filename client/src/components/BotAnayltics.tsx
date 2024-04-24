@@ -73,6 +73,7 @@ function BotAnalytics({ darkMode }) {
                     key={bot.botName}
                     botName={bot.botName}
                     stockSymbol={bot.stockSymbol}
+                    transactionHistory ={bot.transactionHistory}
                     darkMode={darkMode}
                     stockPrice={bot.stockPrice}
                     stockDollarChange={bot.stockDollarChange}
