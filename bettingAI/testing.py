@@ -141,4 +141,3 @@ strategy.backtest(
     end_date,
     parameters={"symbol":"SPY", "cash_at_risk":0.5}
 )
-

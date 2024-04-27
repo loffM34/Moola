@@ -357,7 +357,7 @@ body {
   right: 10px;
 }
 
-#toggleLabel {
+ #toggleLabel {
   width: 50px;
   height: 20px;
   position: relative;
@@ -372,7 +372,7 @@ body {
   padding: 0;
 }
 
-#toggleLabel:after {
+ #toggleLabel:after {
   content: "";
   width: 18px;
   height: 18px;

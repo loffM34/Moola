@@ -35,7 +35,7 @@
 .openNewBotModal {
   width: 100px;
   height: 100px;
-  background: linear-gradient(135deg, #dcdcdc, #ffffff);
+  background: linear-gradient(135deg, #8a8cf0, #ffffff);
   border-radius: 200px;
   align-items: center;
   border: none;
@@ -54,6 +54,10 @@
   border-radius: 23px;
   width:100%;
   height:100%;
+  box-shadow: none;
+  border:none;
+  box-shadow: none;
+
 }
 
 .maxNumBots{
@@ -77,7 +81,6 @@
   background: linear-gradient(135deg, #dcdcdc, #ffffff);
   border-radius: 200px;
   align-items: center;
-  border: none;
   background-image: url("./images/createBotImage.png");
   background-size: cover;
   transition: transfrom 0.3s ease;
@@ -124,6 +127,20 @@
 }
 
 .home-section.dark-dashboard .newBotContainer:hover {
+  transition: 0.3 ease;
+  transform: scale(1.05);
+  box-shadow: 5px 10px lightgrey;
+}
+
+
+.home-section.dark-dashboard .newBotButton{
+  transition: transform 0.3 ease;
+  color: white;
+  text-shadow: 1px 1px 1px black;
+  background: linear-gradient(to bottom, #1a1a1a, #333333);
+}
+
+.home-section.dark-dashboard .newBotContainer:hover:not(.modalOpen) {
   transition: 0.3 ease;
   transform: scale(1.05);
   box-shadow: 5px 10px lightgrey;

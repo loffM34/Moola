@@ -60,30 +60,6 @@ function LoginForm() {
     }
   }
 
-  // async function submit(e) {
-  //   e.preventDefault();
-  //
-  //   try {
-  //     await axios
-  //       .post("http://localhost:5173/Login", {
-  //         email,
-  //         password,
-  //       })
-  // .then((res) => {
-  //   if (res.data == "exist") {
-  //     history("/UserDash", { state: { id: email } });
-  //   } else if (res.data == "notexist") {
-  //     alert("User does not exist");
-  //   }
-  // })
-  // .catch((error) => {
-  //   alert("wrong details");
-  //   console.error(error);
-  // });
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // }
 
   return (
     <>

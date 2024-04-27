@@ -71,7 +71,7 @@ function Bots({
             </div>
             <div className="transactionList">
               <h3>Transaction History</h3>
-              {transactionHistory != null &&(
+              {transactionHistory != null  &&(
                 <ul>
                 {botTransactions.slice(botTransactions.length-5,botTransactions.length).map((transaction,index)=>(
                   <li key={index}>[{transaction}]</li>
@@ -79,7 +79,7 @@ function Bots({
               </ul>
               )}
 
-              {transactionHistory == null &&(
+              {(transactionHistory == null || transactionHistory.length == 0) &&(
                 <ul className="nullTransactions">N/A</ul>
               )}
               

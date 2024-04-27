@@ -22,7 +22,6 @@ router.post("/", async (req, res) => {
       const stockDollarChange = $("fin-streamer").eq(19).text(); // Example selector
       const stockPercentChange = $("fin-streamer").eq(20).text(); // Example selector
 
-
       stockData.push({
         stockSymbol: userBots[i].stockSymbol,
         stockPrice: stockPrice,

@@ -67,7 +67,7 @@ function Dashboard({ darkMode }) {
           ))}
         <div className="newBotContainer">
           {maxNumBots ? <div><div className="maxNumBots">Maximum Number of Bots</div> <div className="newBotClosedImage"></div></div>
- : <div>{stockMarketOpen ? (
+ : <div>{!stockMarketOpen ? (
             <button
               className="newBotButton"
               onClick={() => {
