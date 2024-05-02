@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { userCheck } from "../scripts/authCheck";
 import { confirmPassMatch, validateEmail } from "../scripts/signUpValidation";
 import { createNewUser } from "../scripts/newUserHandler";
@@ -13,9 +13,8 @@ const containerStyles: React.CSSProperties = {
   border: "1px solid #DBD8D0",
   borderRadius: "8px",
   marginTop: "100px",
-  backgroundColor:"white",
-  position:"relative",
-
+  backgroundColor: "white",
+  position: "relative",
 };
 
 const inputContainerStyles: React.CSSProperties = {
@@ -65,7 +64,6 @@ function SignUpForm() {
             firstName: firstName,
             lastName: lastName,
           };
-          console.log(user);
           //set UserContext before signing in
           setAuthContext(user.email, user.firstName, user.lastName);
           //direct to dashboard

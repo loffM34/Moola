@@ -13,7 +13,6 @@ export const getUserBots = async (email) => {
 
     const data = await response.json();
 
-    console.log("DATA" , data)
 
     return data;
 

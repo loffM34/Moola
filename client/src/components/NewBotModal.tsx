@@ -2,9 +2,7 @@ import "../styles/newBotModal.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import { useState } from "react";
 import { createNewBot } from "../scripts/botScripts";
-import { useLocation } from "react-router-dom";
 import { getAuthContext } from "../scripts/authContext";
-import StockSearchForm from "./stockSearchForm";
 
 function NewBotModal({ closeModal }) {
   const userEmail = getAuthContext().email;
@@ -291,12 +289,10 @@ function NewBotModal({ closeModal }) {
                         parseFloat(tradeProfitOrder)
                       );
 
-                      console.log("response", response.status);
                       if (response.status === "name taken") {
                         alert("Bot name already taken for this user");
                         return;
                       } else {
-                        console.log("made  it here");
                         closeModal(false);
                         window.location.reload();
                       }

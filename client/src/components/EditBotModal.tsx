@@ -1,8 +1,7 @@
 import "../styles/editBotModal.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import { useState } from "react";
-import { updateBot, findBot } from "../scripts/botScripts";
-import { useLocation } from "react-router-dom";
+import { updateBot } from "../scripts/botScripts";
 import { getAuthContext } from "../scripts/authContext";
 
 function EditBotModal({ closeModal, botData }) {

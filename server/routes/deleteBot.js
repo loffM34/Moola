@@ -8,7 +8,6 @@ router.post("/", async (req, res) => {
 
   try {
     const user = await UserData.findOne({ email: user_email });
-    console.log("user", user);
     await user.updateOne({
       $pull: { userBots: { botName: bot_name } },
     });

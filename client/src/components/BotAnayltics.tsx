@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import React from "react";
 import Bots from "./Bots";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "../styles/botAnalyticsStyles.css";

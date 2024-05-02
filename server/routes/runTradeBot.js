@@ -19,7 +19,6 @@ router.post("/", async (req, res) => {
   const risk_percentage = req.body.risk_percentage;
   const trade_profit_order = req.body.trade_profit_order;
 
-  console.log(trading_strat);
   if (trading_strat == "dayTrader") {
     python_file = "dayTrader.py";
   } else if (trading_strat == "intermediateTrader") {

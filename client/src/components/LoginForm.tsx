@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import React, {useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { userCheck } from "../scripts/authCheck";
 import { setAuthContext } from "../scripts/authContext";
 import "../styles/loginStyles.css"
@@ -40,7 +40,6 @@ function LoginForm() {
     e.preventDefault();
     try {
       const result = await userCheck(email);
-      console.log(result)
       if (result.status === "exist") {
         const token = result.token;
         if (password === result.user.password) {

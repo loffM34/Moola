@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import React from "react";
 import Bots from "./Bots";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import NewBotModal from "./NewBotModal";
@@ -9,8 +8,6 @@ import { getUserBots } from "../scripts/getUserBots";
 
 function Dashboard({ darkMode }) {
   const user = getAuthContext();
-
-  console.log("Display Toggle", darkMode);
 
   const [openNewBotModal, setOpenModal] = useState(false);
 
@@ -31,8 +28,6 @@ function Dashboard({ darkMode }) {
   }, [setOpenModal]);
 
   const maxNumBots = userBots.length >= 5;
-
-  console.log("user lenght", userBots.length, userBots.length >= 5);
 
   const currentTime = new Date();
   const startTime = new Date();
