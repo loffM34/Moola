@@ -1,0 +1,8 @@
+2024-04-30 22:04:41,328: root: INFO: MLTrader : Executing the initialize lifecycle method
+2024-04-30 22:04:42,894: root: INFO: Current backtesting datetime 2023-04-03 08:30:00-04:00
+2024-04-30 22:04:42,894: root: INFO: MLTrader : Executing the before_market_opens lifecycle method
+2024-04-30 22:04:42,902: root: INFO: Current backtesting datetime 2023-04-03 09:30:00-04:00
+2024-04-30 22:04:42,902: root: INFO: MLTrader : Executing the before_starting_trading lifecycle method
+2024-04-30 22:04:42,902: root: INFO: [34mMLTrader : Executing the on_trading_iteration lifecycle method at 2024-04-30 22:04:42[0m
+2024-04-30 22:04:42,910: root: WARNING: quote is not implemented for YahooData, but USD was passed as the quote
+2024-04-30 22:04:42,936: root: WARNING: quote is not implemented for YahooData, but USD was passed as the quote

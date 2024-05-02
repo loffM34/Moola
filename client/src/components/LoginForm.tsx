@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { userCheck } from "../scripts/authCheck";
 import { setAuthContext } from "../scripts/authContext";
+import "../styles/loginStyles.css"
 
 const containerStyles: React.CSSProperties = {
   padding: "50px 3%",
@@ -21,16 +22,19 @@ const inputContainerStyles: React.CSSProperties = {
   width: "100%",
 };
 
-const forgotPassStyles: React.CSSProperties = {
-  marginRight: "260px",
-  whiteSpace: "nowrap"
-};
+
+
+
 
 function LoginForm() {
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  function forgotPasswordResponse(){
+    alert("That's Unfortunate");
+  }
 
   async function submit(e) {
     e.preventDefault();
@@ -92,7 +96,7 @@ function LoginForm() {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        <a style={forgotPassStyles}>Forgot Password?</a> <br></br>
+        <a className="forgotPassStyles" onClick={forgotPasswordResponse}>Forgot Password?</a> <br></br>
         <button type="button" className="btn btn-primary" onClick={submit}>
           Login
         </button>

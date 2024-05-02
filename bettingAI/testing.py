@@ -10,8 +10,8 @@ from finbert_utils import estimate_sentiment
 
 
 ## Alpaca API INFO
-API_KEY = "PKC0NC0HB3W627YY4FHE"
-API_SECRET = "4i0R4xljmbobxCjrDatXVZs04TD4p1GONdefzAFT"
+API_KEY = ""
+API_SECRET = ""
 BASE_URL = "https://paper-api.alpaca.markets/v2"
 
 ALPACA_CREDS = {

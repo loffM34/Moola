@@ -10,15 +10,14 @@ export const confirmPassMatch = (password, confirmPass) => {
   const confirmPassField = document.getElementById("confirmPassInput");
 
   if (password === confirmPass && validatePassword(password)) {
-    passwordField.style.backgroundColor = "lightgreen";
-    confirmPassField.style.backgroundColor = "lightgreen";
-    return true
+    passwordField.style.backgroundColor = "#90EE90";
+    confirmPassField.style.backgroundColor = "#90EE90";
+    return true;
   } else {
     passwordField.style.backgroundColor = "white";
     confirmPassField.style.backgroundColor = "white";
-    return false
+    return false;
   }
-
 };
 
 export const validateEmail = (email) => {
@@ -26,7 +25,7 @@ export const validateEmail = (email) => {
   const emailField = document.getElementById("emailInput");
 
   if (emailRegex.test(email)) {
-    emailField.style.backgroundColor = "lightgreen";
+    emailField.style.backgroundColor = "#90EE90";
   } else {
     emailField.style.backgroundColor = "white";
   }

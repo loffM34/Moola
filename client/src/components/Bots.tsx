@@ -29,7 +29,6 @@ function Bots({
     }
   }
 
-  console.log("trans hist", transactionHistory)
   const botTransactions = transactionHistory;
 
   return (
@@ -71,18 +70,30 @@ function Bots({
             </div>
             <div className="transactionList">
               <h3>Transaction History</h3>
-              {transactionHistory != null  &&(
+              {transactionHistory != null && (
                 <ul>
-                {botTransactions.slice(botTransactions.length-5,botTransactions.length).map((transaction,index)=>(
-                  <li key={index}>[{transaction}]</li>
-                ))}
-              </ul>
+                  {botTransactions.length > 5
+                    ? [...botTransactions]
+                        .slice(
+                          botTransactions.length - 5,
+                          botTransactions.length
+                        )
+                        .reverse()
+                        .map((transaction, index) => (
+                          <li key={index}>[{transaction}]</li>
+                        ))
+                    : [...botTransactions]
+                        .reverse()
+                        .map((transaction, index) => (
+                          <li key={index}>[{transaction}]</li>
+                        ))}
+                </ul>
               )}
 
-              {(transactionHistory == null || transactionHistory.length == 0) &&(
+              {(transactionHistory == null ||
+                transactionHistory.length == 0) && (
                 <ul className="nullTransactions">N/A</ul>
               )}
-              
             </div>
           </div>
         </div>

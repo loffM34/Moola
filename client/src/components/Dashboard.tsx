@@ -32,7 +32,7 @@ function Dashboard({ darkMode }) {
 
   const maxNumBots = userBots.length >= 5;
 
-  console.log("user lenght",userBots.length, userBots.length >=5)
+  console.log("user lenght", userBots.length, userBots.length >= 5);
 
   const currentTime = new Date();
   const startTime = new Date();
@@ -66,26 +66,33 @@ function Dashboard({ darkMode }) {
             />
           ))}
         <div className="newBotContainer">
-          {maxNumBots ? <div><div className="maxNumBots">Maximum Number of Bots</div> <div className="newBotClosedImage"></div></div>
- : <div>{!stockMarketOpen ? (
-            <button
-              className="newBotButton"
-              onClick={() => {
-                setOpenModal(true);
-              }}
-            >
-              <div className="openNewBotModal"></div>
-            </button>
-          ) : (
+          {maxNumBots ? (
             <div>
-              <p className="marketClosedMessage">
-                {" "}
-                Stock Market is Currently Closed.{" "}
-              </p>
+              <div className="maxNumBots">Maximum Number of Bots</div>{" "}
               <div className="newBotClosedImage"></div>
             </div>
-          )}</div> }
-          
+          ) : (
+            <div>
+              {!stockMarketOpen ? (
+                <button
+                  className="newBotButton"
+                  onClick={() => {
+                    setOpenModal(true);
+                  }}
+                >
+                  <div className="openNewBotModal"></div>
+                </button>
+              ) : (
+                <div>
+                  <p className="marketClosedMessage">
+                    {" "}
+                    Stock Market is Currently Closed.{" "}
+                  </p>
+                  <div className="newBotClosedImage"></div>
+                </div>
+              )}
+            </div>
+          )}
         </div>
       </div>
     </section>

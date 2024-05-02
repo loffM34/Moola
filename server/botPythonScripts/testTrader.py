@@ -9,16 +9,22 @@ from timedelta import Timedelta
 from finbert_utils import estimate_sentiment
 import sys
 
+#Params for the trading strategy
+alpaca_key = sys.argv[1]
+alpaca_secret = sys.argv[2]
+alpaca_endpoint = sys.argv[3]
+stock_symbol = sys.argv[4]
+risk_percentage = float(sys.argv[5])
+trade_profit_order = float(sys.argv[6])
 
 
-## Alpaca API INFO
-API_KEY = "PKGI10CQJC6VQQHHV52D"
-API_SECRET = "M4JXRPoamCkc8fo5HLfvNqBocAcj5zrbKbIauCwS"
-BASE_URL = "https://paper-api.alpaca.markets/v2"
+
+
+BASE_URL = alpaca_endpoint
 
 ALPACA_CREDS = {
-    "API_KEY": API_KEY,
-    "API_SECRET": API_SECRET,
+    "API_KEY": alpaca_key,
+    "API_SECRET": alpaca_secret,
     "PAPER": True
 }
 
@@ -32,13 +38,13 @@ class MLTrader(Strategy):
         self.symbol = symbol
         print("STOCK SYMBOL", self.symbol)
         #How often bot makes a trade
-        # self.sleeptime = "24H"
+        self.sleeptime = "24H"
         
         #Last trade made by bot (buy,sell,hold)
         self.last_trade = None
         #set value of percentage of cash we are willing to risk
         self.cash_at_risk = cash_at_risk
-        self.api = REST(base_url = BASE_URL, key_id=API_KEY, secret_key=API_SECRET)
+        self.api = REST(base_url = BASE_URL, key_id=alpaca_key, secret_key=alpaca_secret)
 
 
     def position_sizing(self):
@@ -104,7 +110,7 @@ class MLTrader(Strategy):
                         "sell",
                         #set barrier where if there is 20% profit or 5% loss than the bot atomattically sells 
                         type="bracket",
-                        take_profit_price = last_price * 0.8,
+                        take_profit_price = trade_profit_order,
                         stop_loss_price = last_price*1.05
                     )
                     #submits order through alpaca
@@ -115,17 +121,11 @@ class MLTrader(Strategy):
                     print("HELD")
 
 
-#Params for the trading strategy
-bot_name = sys.argv[1]
-alpaca_key = sys.argv[2]
-alpaca_secret = sys.argv[3]
-alpaca_endpoint = sys.argv[4]
-stock_symbol = sys.argv[5]
-trading_strat = sys.argv[6]
-start_cash = sys.argv[7]
-risk_percentage = sys.argv[8]
-trade_profit_order = sys.argv[9]
 
+print("RISK", risk_percentage)
+print("type", type(risk_percentage))
+
+print("order",trade_profit_order)
 # Get current date
 current_date = datetime.today()
 
@@ -140,27 +140,30 @@ end_date = datetime(2023, 12, 25)
 broker = Alpaca(ALPACA_CREDS)
 strategy = MLTrader(name='mlstrat', broker = broker,
                     parameters={"symbol":stock_symbol, 
-                                "cash_at_risk":0.5})
+                                "cash_at_risk":risk_percentage*0.01})
 
-#BACKTESTING 
-# strategy.backtest(
-#     YahooDataBacktesting,
-#     start_date,
-#     end_date,
-#     parameters={"symbol":"SPY", "cash_at_risk":0.5}
-# )
 
 
 
 
 # Check if the script is called with the correct number of arguments
-if len(sys.argv) != 10:
+if len(sys.argv) != 9:
     print("Incorrect Number of arguments passed")
     sys.exit(1)
 else:
-    trader = Trader()
-    trader.add_strategy(strategy)
-    trader.run_all()
+    print("RISK", risk_percentage)
+    print("order",trade_profit_order)
+    # trader = Trader()
+    # trader.add_strategy(strategy)
+    # trader.run_all()
+
+    # BACKTESTING 
+    strategy.backtest(
+        YahooDataBacktesting,
+        start_date,
+        end_date,
+        parameters={"symbol":"SPY", "cash_at_risk":risk_percentage*0.01}
+    )
 
 
 

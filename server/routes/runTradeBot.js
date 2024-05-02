@@ -2,18 +2,14 @@ const express = require("express");
 const { exec } = require("child_process");
 const router = express.Router();
 
-
 // What this should do!!!!
 //  Run a CRONT job  each bot in the userBot array
-// 
-// 
-// 
-
-
+//
+//
+//
 
 //post method for running python files
 router.post("/", async (req, res) => {
-  
   const bot_name = req.body.bot_name;
   const alpaca_key = req.body.alpaca_key;
   const alpaca_secret = req.body.alpaca_secret;
@@ -23,8 +19,7 @@ router.post("/", async (req, res) => {
   const risk_percentage = req.body.risk_percentage;
   const trade_profit_order = req.body.trade_profit_order;
 
-
-  console.log(trading_strat)
+  console.log(trading_strat);
   if (trading_strat == "dayTrader") {
     python_file = "dayTrader.py";
   } else if (trading_strat == "intermediateTrader") {
@@ -40,17 +35,11 @@ router.post("/", async (req, res) => {
     "python " +
     python_file +
     " " +
-    bot_name +
-    " " +
     alpaca_key +
     " " +
     alpaca_secret +
     " " +
     stock_symbol +
-    " " +
-    trading_strat +
-    " " +
-    start_cash +
     " " +
     risk_percentage +
     " " +

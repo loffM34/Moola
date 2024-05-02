@@ -18,7 +18,7 @@ router.post("/", async (req, res) => {
       const $ = cheerio.load(response.data);
 
       // Target the HTML element containing the stock price (inspect the webpage to find the correct selector)
-      const stockPrice = $("fin-streamer").eq(18).text(); // Example selector
+      const stockPrice = $("fin-streamer").eq(18).text();
       const stockDollarChange = $("fin-streamer").eq(19).text(); // Example selector
       const stockPercentChange = $("fin-streamer").eq(20).text(); // Example selector
 

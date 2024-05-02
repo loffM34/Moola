@@ -13,13 +13,15 @@ function EditBotModal({ closeModal, botData }) {
   const [alpacaKey, setAlpacaKey] = useState(botData.alpacaKey);
   const [alpacaSecret, setAlpacaSecret] = useState(botData.alpacaSecret);
   const [tradingStrategy, setTradingStrategy] = useState(botData.tradingStrat);
-  const [startingAmount, setStartingAmount] = useState(botData.startCash);
   const [cashRiskPercentage, setCashRiskPercentage] = useState(
-    botData.riskPercent
+    parseFloat(botData.riskPercent) * 100
   );
   const [tradeProfitOrder, setTradeProfitOrder] = useState(
     botData.tradeProfitOrder
   );
+
+  var validRisk = cashRiskPercentage > 0 && cashRiskPercentage <= 100;
+  var validProfitOrder = parseFloat(tradeProfitOrder) > 0;
 
   return (
     <>
@@ -88,7 +90,7 @@ function EditBotModal({ closeModal, botData }) {
                   <option value="longTermTrader">Long Term Trader</option>
                 </select>
               </div>
-              <div className="starting-cash-input">
+              {/* <div className="starting-cash-input">
                 <label>Starting Amount:</label>
                 <input
                   type="number"
@@ -100,9 +102,16 @@ function EditBotModal({ closeModal, botData }) {
                   value={startingAmount}
                   onChange={(e) => setStartingAmount(e.target.value)}
                 />
-              </div>
-              <div className="starting-cash-input">
-                <label>Cash Risk Percentage:</label>
+              </div> */}
+              <div className="risk-percent-input">
+                <label>
+                  Cash Risk Percentage{" "}
+                  <i className="bi bi-info-circle-fill"></i>
+                  <span className="infoTooltip">
+                    Cash Risk Percentage is the percent of your cash your bot is
+                    able to trade with each transaction
+                  </span>
+                </label>
                 <input
                   type="number"
                   required
@@ -110,17 +119,49 @@ function EditBotModal({ closeModal, botData }) {
                   placeholder="Cash Risk Percentage"
                   min="1"
                   max="100"
+                  style={{
+                    borderColor:
+                      (cashRiskPercentage > 0 && cashRiskPercentage <= 100) ||
+                      String(cashRiskPercentage).length == 0
+                        ? "grey"
+                        : "red",
+                    borderWidth:
+                      (cashRiskPercentage > 0 && cashRiskPercentage <= 100) ||
+                      String(cashRiskPercentage).length == 0
+                        ? "1px"
+                        : "2px",
+                  }}
                   value={cashRiskPercentage}
-                  onChange={(e) => setCashRiskPercentage(e.target.value)}
+                  onChange={(e) =>
+                    setCashRiskPercentage(parseFloat(e.target.value))
+                  }
                 />
               </div>
               <div className="trade-profit-order-input">
-                <label>Trade Profit Order:</label>
+                <label>
+                  Trade Profit Order <i className="bi bi-info-circle-fill"></i>
+                  <span className="infoTooltip">
+                    Trade Profit Order is the buy out cash value where your bot
+                    will sell all assets once reaching
+                  </span>
+                </label>
                 <input
                   type="number"
                   required
                   className="form-control"
                   placeholder="Trade Profit Order"
+                  style={{
+                    borderColor:
+                      parseFloat(tradeProfitOrder) > 0 ||
+                      tradeProfitOrder.length == 0
+                        ? "grey"
+                        : "red",
+                    borderWidth:
+                      parseFloat(tradeProfitOrder) > 0 ||
+                      tradeProfitOrder.length == 0
+                        ? "1px"
+                        : "2px",
+                  }}
                   value={tradeProfitOrder}
                   onChange={(e) => setTradeProfitOrder(e.target.value)}
                 />
@@ -135,12 +176,14 @@ function EditBotModal({ closeModal, botData }) {
                     !alpacaKey ||
                     !alpacaSecret ||
                     !tradingStrategy ||
-                    !startingAmount ||
                     !cashRiskPercentage ||
                     !tradeProfitOrder
                   ) {
                     alert("Please fill in all the fields");
                   } else {
+                    if (!validRisk || !validProfitOrder) {
+                      alert("Invalid Data entered. Try again.");
+                    }
                     const response = await updateBot(
                       userEmail,
                       currentBotInfo.botName,
@@ -151,7 +194,7 @@ function EditBotModal({ closeModal, botData }) {
                       currentBotInfo.stockSymbol,
                       tradingStrategy,
                       currentBotInfo.startCash,
-                      cashRiskPercentage,
+                      cashRiskPercentage * 0.01,
                       tradeProfitOrder
                     );
                     if (response.status === "name taken") {

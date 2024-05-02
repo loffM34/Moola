@@ -10,8 +10,8 @@ from finbert_utils import estimate_sentiment
 
 
 ## Alpaca API INFO
-API_KEY = "PKC0NC0HB3W627YY4FHE"
-API_SECRET = "4i0R4xljmbobxCjrDatXVZs04TD4p1GONdefzAFT"
+API_KEY = ""
+API_SECRET = ""
 BASE_URL = "https://paper-api.alpaca.markets/v2"
 
 ALPACA_CREDS = {
@@ -29,7 +29,7 @@ class MLTrader(Strategy):
         #symbol of stock choosen
         self.symbol = symbol
         #How often bot makes a trade
-        self.sleeptime = "24H"
+        self.sleeptime = "1H"
         
         #Last trade made by bot (buy,sell,hold)
         self.last_trade = None
@@ -119,8 +119,8 @@ year = current_date.year
 month = current_date.month
 day = current_date.day
 
-start_date = datetime(2020, 12, 25)
-end_date = datetime(2023, 12, 25)
+start_date = datetime(2024, 4, 1)
+end_date = datetime(2024, 4, 30)
 
 broker = Alpaca(ALPACA_CREDS)
 strategy = MLTrader(name='mlstrat', broker = broker,
@@ -128,19 +128,19 @@ strategy = MLTrader(name='mlstrat', broker = broker,
                                 "cash_at_risk":0.5})
 
 #BACKTESTING 
-# strategy.backtest(
-#     YahooDataBacktesting,
-#     start_date,
-#     end_date,
-#     parameters={"symbol":"SPY", "cash_at_risk":0.5}
-# )
+strategy.backtest(
+    YahooDataBacktesting,
+    start_date,
+    end_date,
+    parameters={"symbol":"SPY", "cash_at_risk":0.5}
+)
 
 
 #Run bot Live
 
-trader = Trader()
-trader.add_strategy(strategy)
-trader.run_all()
+# trader = Trader()
+# trader.add_strategy(strategy)
+# trader.run_all()
 
 # trader.stop_all()
 # strategy.initialize()

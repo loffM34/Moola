@@ -13,18 +13,15 @@ function NewBotModal({ closeModal }) {
   const [alpacaKey, setAlpacaKey] = useState("");
   const [alpacaSecret, setAlpacaSecret] = useState("");
   const [tradingStrategy, setTradingStrategy] = useState("");
-  const [startingAmount, setStartingAmount] = useState("");
   const [cashRiskPercentage, setCashRiskPercentage] = useState("");
   const [tradeProfitOrder, setTradeProfitOrder] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [stockSymbol, setStockSymbol] = useState("");
 
   var validSymbol = /^[A-Z]+$/.test(stockSymbol);
-  var validStart = parseFloat(startingAmount) > 0;
   var validRisk =
     parseFloat(cashRiskPercentage) > 0 && parseFloat(cashRiskPercentage) <= 100;
-  var validProfitOrder =
-    parseFloat(tradeProfitOrder) > parseFloat(startingAmount);
+  var validProfitOrder = parseFloat(tradeProfitOrder) > 0;
 
   async function handleStockSearch(query) {
     try {
@@ -99,10 +96,17 @@ function NewBotModal({ closeModal }) {
                 onChange={(e) => setAlpacaSecret(e.target.value)}
               />
             </div>
+            <h3>Trading Info</h3>
             <div className="stockInformation">
-              <h3>Trading Info</h3>
+              <label className="stockSearchLabel">
+                Stock Search <i className="bi bi-info-circle-fill"></i>
+                <span className="infoTooltip">
+                  Type a stock symbol of your choice, click the search button
+                  and then click the search bar to select a symbol from the
+                  dropdown
+                </span>
+              </label>
               <div className="stock-input"></div>
-
               <form className="d-flex" onSubmit={handleSearch}>
                 <input
                   className="form-control me-2"
@@ -122,6 +126,7 @@ function NewBotModal({ closeModal }) {
                         : "2px",
                   }}
                   onChange={(e) => setStockSymbol(e.target.value)}
+                  autoComplete="off"
                 />
                 <datalist id="stockOptions">
                   <option hidden>Select a stock</option>
@@ -145,7 +150,13 @@ function NewBotModal({ closeModal }) {
               </form>
 
               <div className="trading-strategy-input">
-                <label>Strategy:</label>
+                <label>
+                  Strategy <i className="bi bi-info-circle-fill"></i>
+                  <span className="infoTooltip">
+                    choose your bot's trading strategy which will determine how
+                    many transactions they make daily
+                  </span>
+                </label>
                 <select
                   className="form-control"
                   value={tradingStrategy}
@@ -161,7 +172,7 @@ function NewBotModal({ closeModal }) {
                   <option value="longTermTrader">Long Term Trader</option>
                 </select>
               </div>
-              <div className="starting-cash-input">
+              {/* <div className="starting-cash-input">
                 <label>Starting Amount:</label>
                 <input
                   type="number"
@@ -185,9 +196,16 @@ function NewBotModal({ closeModal }) {
                   value={startingAmount}
                   onChange={(e) => setStartingAmount(e.target.value)}
                 />
-              </div>
-              <div className="starting-cash-input">
-                <label>Cash Risk Percentage:</label>
+              </div> */}
+              <div className="risk-percent-input">
+                <label>
+                  Cash Risk Percentage{" "}
+                  <i className="bi bi-info-circle-fill"></i>
+                  <span className="infoTooltip">
+                    Cash Risk Percentage is the percent of your cash your bot is
+                    able to trade with each transaction
+                  </span>
+                </label>
                 <input
                   type="number"
                   required
@@ -214,7 +232,13 @@ function NewBotModal({ closeModal }) {
                 />
               </div>
               <div className="trade-profit-order-input">
-                <label>Trade Profit Order:</label>
+                <label>
+                  Trade Profit Order <i className="bi bi-info-circle-fill"></i>
+                  <span className="infoTooltip">
+                    Trade Profit Order is the buy out cash value where your bot
+                    will sell all assets once reaching
+                  </span>
+                </label>
                 <input
                   type="number"
                   required
@@ -222,14 +246,12 @@ function NewBotModal({ closeModal }) {
                   placeholder="Trade Profit Order"
                   style={{
                     borderColor:
-                      parseFloat(tradeProfitOrder) >
-                        parseFloat(startingAmount) ||
+                      parseFloat(tradeProfitOrder) > 0 ||
                       tradeProfitOrder.length == 0
                         ? "grey"
                         : "red",
                     borderWidth:
-                      parseFloat(tradeProfitOrder) >
-                        parseFloat(startingAmount) ||
+                      parseFloat(tradeProfitOrder) > 0 ||
                       tradeProfitOrder.length == 0
                         ? "1px"
                         : "2px",
@@ -249,18 +271,12 @@ function NewBotModal({ closeModal }) {
                     !alpacaSecret ||
                     !stockSymbol ||
                     !tradingStrategy ||
-                    !startingAmount ||
                     !cashRiskPercentage ||
                     !tradeProfitOrder
                   ) {
                     alert("Please fill in all the fields");
                   } else {
-                    if (
-                      !validSymbol ||
-                      !validStart ||
-                      !validRisk ||
-                      !validProfitOrder
-                    ) {
+                    if (!validSymbol || !validRisk || !validProfitOrder) {
                       alert("Invalid Data entered. Try again.");
                     } else {
                       const response = await createNewBot(
@@ -271,9 +287,8 @@ function NewBotModal({ closeModal }) {
                         alpacaSecret,
                         stockSymbol,
                         tradingStrategy,
-                        startingAmount,
-                        cashRiskPercentage,
-                        tradeProfitOrder
+                        parseFloat(cashRiskPercentage) * 0.01,
+                        parseFloat(tradeProfitOrder)
                       );
 
                       console.log("response", response.status);

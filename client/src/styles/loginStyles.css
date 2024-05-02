@@ -1,0 +1,11 @@
+.forgotPassStyles{
+    margin-right: 260px;
+    white-space:nowrap;
+    cursor:pointer;
+    text-decoration: none;
+    color:black
+}
+
+.forgotPassStyles:hover{
+    color:blue
+}

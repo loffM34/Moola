@@ -12,7 +12,6 @@ router.post("/", async (req, res) => {
   const alpaca_endpoint = req.body.alpaca_endpoint;
   const stock_symbol = req.body.stock_symbol;
   const trading_strat = req.body.trading_strat;
-  const start_cash = req.body.start_cash;
   const risk_percentage = req.body.risk_percentage;
   const trade_profit_order = req.body.trade_profit_order;
 
@@ -42,11 +41,9 @@ router.post("/", async (req, res) => {
           alpacaEndpoint: alpaca_endpoint,
           stockSymbol: stock_symbol,
           tradingStrat: trading_strat,
-          startCash: start_cash,
           riskPercent: risk_percentage,
           tradeProfitOrder: trade_profit_order,
           transactionHistory: [],
-          
         },
       },
     });
@@ -67,8 +64,6 @@ router.post("/", async (req, res) => {
       "python " +
       python_file +
       " " +
-      bot_name +
-      " " +
       alpaca_key +
       " " +
       alpaca_secret +
@@ -76,10 +71,6 @@ router.post("/", async (req, res) => {
       alpaca_endpoint +
       " " +
       stock_symbol +
-      " " +
-      trading_strat +
-      " " +
-      start_cash +
       " " +
       risk_percentage +
       " " +

@@ -10,8 +10,8 @@ from finbert_utils import estimate_sentiment
 from algorithms import calcSharpeRatio
 
 ## Alpaca API INFO
-API_KEY = "PKDGY2P4PWQ4Z5SE1QMI"
-API_SECRET = "zc1yxtLN4xmhs4ZFkcgKwdlxJvje2bde68MOBecy"
+API_KEY = ""
+API_SECRET = ""
 BASE_URL = "https://paper-api.alpaca.markets"
 
 ALPACA_CREDS = {
@@ -80,7 +80,7 @@ class MLTrader(Strategy):
         #if we have more cash than the stock costs or if 
         if cash > last_price:
                 #if sentiment states that stock is going up and there is a high probablitiy of it 
-                if sentiment == "positive" and probablitiy > 0.9:
+                if sentiment == "positive" and probablitiy > 0.999:
                     #if last trade was a sell 
                     if self.last_trade == "sell":
                          self.sell_all()
@@ -100,7 +100,7 @@ class MLTrader(Strategy):
 
 
                 #if sentiment states that stock is going up and there is a high probablitiy of it 
-                elif sentiment == "negative" and probablitiy > 0.9:
+                elif sentiment == "negative" and probablitiy > 0.999:
                     #
                     if self.last_trade == "buy":
                          self.sell_all()

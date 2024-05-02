@@ -1,0 +1,15 @@
+time,strategy,symbol,side,type,status,multiplier,time_in_force,asset.strike,asset.multiplier,asset.asset_type,price,filled_quantity,trade_cost
+2024-04-11 09:30:00-04:00,MLTrader,SPY,sell,market,new,1,gtc,0.0,1,stock,,,
+2024-04-11 09:30:00-04:00,MLTrader,SPY,sell,market,fill,1,gtc,0.0,1,stock,515.6799926757812,97.0,0.0
+2024-04-11 10:30:00-04:00,MLTrader,SPY,sell,market,new,1,gtc,0.0,1,stock,,,
+2024-04-11 10:30:00-04:00,MLTrader,SPY,sell,market,fill,1,gtc,0.0,1,stock,515.6799926757812,145.0,0.0
+2024-04-11 11:30:00-04:00,MLTrader,SPY,sell,market,new,1,gtc,0.0,1,stock,,,
+2024-04-11 11:30:00-04:00,MLTrader,SPY,sell,market,fill,1,gtc,0.0,1,stock,515.6799926757812,218.0,0.0
+2024-04-11 12:30:00-04:00,MLTrader,SPY,sell,market,new,1,gtc,0.0,1,stock,,,
+2024-04-11 12:30:00-04:00,MLTrader,SPY,sell,market,fill,1,gtc,0.0,1,stock,515.6799926757812,327.0,0.0
+2024-04-11 13:30:00-04:00,MLTrader,SPY,sell,market,new,1,gtc,0.0,1,stock,,,
+2024-04-11 13:30:00-04:00,MLTrader,SPY,sell,market,fill,1,gtc,0.0,1,stock,515.6799926757812,490.0,0.0
+2024-04-11 14:30:00-04:00,MLTrader,SPY,sell,market,new,1,gtc,0.0,1,stock,,,
+2024-04-11 14:30:00-04:00,MLTrader,SPY,sell,market,fill,1,gtc,0.0,1,stock,515.6799926757812,735.0,0.0
+2024-04-11 15:30:00-04:00,MLTrader,SPY,sell,market,new,1,gtc,0.0,1,stock,,,
+2024-04-11 15:30:00-04:00,MLTrader,SPY,sell,market,fill,1,gtc,0.0,1,stock,515.6799926757812,1103.0,0.0

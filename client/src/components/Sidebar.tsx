@@ -30,6 +30,10 @@ function Sidebar({ darkMode, toggleDarkMode }: SidebarProps) {
     history("/Home");
   }
 
+  const handleClick = () => {
+    window.location.href = "/src/scripts/secret.html";
+  };
+
   return (
     <>
       <div
@@ -38,7 +42,9 @@ function Sidebar({ darkMode, toggleDarkMode }: SidebarProps) {
         }`}
       >
         <div className="logo_details">
-          <div className="logo_name"><img src={logo} className="sidebarLogo"/> moola</div>
+          <div className="logo_name">
+            <img src={logo} className="sidebarLogo" /> moola
+          </div>
           <i className="bi bi-list" id="btn" onClick={toggleSidebar}></i>
         </div>
         <ul className="nav-list">
@@ -73,7 +79,8 @@ function Sidebar({ darkMode, toggleDarkMode }: SidebarProps) {
                 className="secretButton"
                 onClick={() => {
                   toggleSidebar();
-                  setOpenSecretModal(true);
+                  // setOpenSecretModal(true);
+                  handleClick();
                 }}
               >
                 <div className="profilePicture"></div>
@@ -95,8 +102,6 @@ function Sidebar({ darkMode, toggleDarkMode }: SidebarProps) {
           </li>
         </ul>
       </div>
-
-      <script src=""></script>
     </>
   );
 }

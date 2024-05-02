@@ -7,7 +7,6 @@ export const createNewBot = async (
   alpaca_secret,
   stock_symbol,
   trading_strat,
-  start_cash,
   risk_percentage,
   trade_profit_order
 ) => {
@@ -23,7 +22,6 @@ export const createNewBot = async (
         alpaca_secret: alpaca_secret,
         trading_strat: trading_strat,
         stock_symbol: stock_symbol,
-        start_cash: start_cash,
         risk_percentage: risk_percentage,
         trade_profit_order: trade_profit_order,
       }),
